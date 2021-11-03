@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/styling.css" type="text/css">
+    <title>Index</title>
+</head>
+<body>
+Welcome to MyApp!
+
+<table>
+    <tr><td>Login</td>
+        <td>
+            <form name="login" action="/login" method="POST">
+                Email:<br>
+                <input type="text" name="email">
+                <br>
+                Password:<br>
+                <input type="password" name="password">
+                <br>
+                <input type="submit" value="Submit">
+            </form>
+        </td>
+        <td>Or Register</td>
+        <td>
+            <form name="register" action="/register" method="POST">
+                Email:<br>
+                <input type="text" name="email">
+                <br>
+                Password:<br>
+                <input type="password" name="password1">
+                <br>
+                Retype Password:<br>
+                <input type="password" name="password2">
+                <br>
+                <input type="submit" value="Submit">
+            </form>
+        </td>
+    </tr>
+</table>
+</body>
+</html>
