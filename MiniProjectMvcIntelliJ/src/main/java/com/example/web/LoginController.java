@@ -3,7 +3,6 @@ package com.example.web;
 import com.example.domain.LoginSampleException;
 import com.example.domain.models.User;
 import com.example.domain.services.LoginService;
-import com.example.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -13,7 +12,7 @@ import org.springframework.web.context.request.WebRequest;
 public class LoginController {
 
   //Inversion of Control
-  private LoginService loginService = new LoginService(UserRepository userRepository);
+  private LoginService loginService = new LoginService();
 
   @GetMapping("/")
   public String index (){
@@ -25,7 +24,7 @@ public class LoginController {
 
     //Retrieve values from HTML form via WebRequest
     String email = request.getParameter("email");
-    String pwd = request.getParameter("password");
+    String password = request.getParameter("password");
 
     // delegate work + data to login controller
     User user = loginService.login(email, password);
@@ -34,7 +33,7 @@ public class LoginController {
     request.setAttribute("user", user, WebRequest.SCOPE_SESSION);
   /*  request.setAttribute("role", user.getRole(), WebRequest.SCOPE_SESSION);*/
 
-    return "userpages/" + user.getRole();
+    return "userpages/";
   }
 
 
@@ -44,14 +43,19 @@ public class LoginController {
     String email = request.getParameter("email");
     String password1 = request.getParameter("password1");
     String password2 = request.getParameter("password2");
+    String firstName = request.getParameter("firstname");
+    String lastName = request.getParameter("lastname");
+    String address = request.getParameter("address");
+    int age = Integer.parseInt(request.getParameter("age"));
+    String phoneNumber = request.getParameter("phonenumber");
 
     // If passwords match, work + data is delegated to login service
     if (password1.equals(password2)) {
-      User user = loginService.createUser(email, password1);
+      User user = loginService.createUser(email, password1, firstName, lastName, address,
+          age, phoneNumber);
       request.setAttribute("user", user, WebRequest.SCOPE_SESSION);
 
-      // Go to page dependent on role
-      return "userpages/" + user.getRole();
+      return "index";
 
     } else { // If passwords don't match, an exception is thrown
       throw new LoginSampleException("The two passwords did not match");

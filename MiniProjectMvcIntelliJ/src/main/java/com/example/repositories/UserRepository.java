@@ -36,9 +36,9 @@ public class UserRepository {
   public User createUser(User user) throws LoginSampleException {
     try {
       Connection con = DBManager.getConnection();
-      String SQL = "INSERT INTO Users (email, password, firstname, lastname, age, address, phonenumber)" +
+      String SQL = "INSERT INTO users (email, password, firstname, lastname, address, age, phonenumber)" +
           " VALUES (?, ?, ?, ?, ?, ?, ?)";
-      PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
+      PreparedStatement ps = con.prepareStatement(SQL/*, Statement.RETURN_GENERATED_KEYS*/);
       ps.setString(1, user.getEmail());
       ps.setString(2, user.getPassword());
       ps.setString(3, user.getFirstName());
@@ -47,10 +47,10 @@ public class UserRepository {
       ps.setInt(6, user.getAge());
       ps.setString(7, user.getPhoneNumber());
       ps.executeUpdate();
-      ResultSet ids = ps.getGeneratedKeys();
+      /*ResultSet ids = ps.getGeneratedKeys();
       ids.next();
       int id = ids.getInt(1);
-      user.setId(id);
+      user.setId(id);*/
       return user;
     } catch (SQLException ex) {
       throw new LoginSampleException(ex.getMessage());
