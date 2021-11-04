@@ -5,9 +5,9 @@ import com.example.domain.models.User;
 
 import java.sql.*;
 
-public class UserRepository {
+public class UserRepository{
 
-  public User login(String email, String password) throws LoginSampleException {
+  /*public User login(String email, String password) throws LoginSampleException {
     try {
       Connection con = DBManager.getConnection();
       String SQL = "SELECT id, role FROM Users "
@@ -28,12 +28,23 @@ public class UserRepository {
     } catch (SQLException ex) {
       throw new LoginSampleException(ex.getMessage());
     }
+  }*/
+
+  public ResultSet dbRead() {
+    ResultSet resSet = null;
+    String select = "SELECT email, password, firstname, lastname, age, address, phonenumber FROM users";
+    try {
+      PreparedStatement ps = DBManager.getConnection().prepareStatement(select);
+      resSet = ps.executeQuery();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return resSet;
   }
 
 
 
-
-  public User createUser(User user) throws LoginSampleException {
+  public void dbWrite(User user) throws LoginSampleException {
     try {
       Connection con = DBManager.getConnection();
       String SQL = "INSERT INTO users (email, password, firstname, lastname, address, age, phonenumber)" +
@@ -51,9 +62,9 @@ public class UserRepository {
       ids.next();
       int id = ids.getInt(1);
       user.setId(id);*/
-      return user;
-    } catch (SQLException ex) {
-      throw new LoginSampleException(ex.getMessage());
+       } catch (SQLException ex) {
+      ex.printStackTrace();
     }
   }
+
 }

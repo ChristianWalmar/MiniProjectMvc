@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/styling.css" type="text/css">
+    <title>Userpage</title>
+</head>
+<body>
+<p><b> Congratulations, <span th:text = "${user1.address}" />! You have successfully logged in</b></p>
+
+<div class="button-wrapper">
+    <button class="button1" onclick="location.href='/logout'" type="button">Logout</button>
+</div>
+
+
+
+<p th:text="${session.values()}" th:unless="${session == null}">[...]</p>
+<p>Is session empty now?</p>
+<p th:text="${session.isEmpty()}" th:unless="${session == null}">[...]</p>
+</body>
+</html>

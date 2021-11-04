@@ -7,6 +7,7 @@ public class Item {
   private int amount;
 
 
+
   public Item(String title, String colour, int amount) {
     this.title = title;
     this.colour = colour;
