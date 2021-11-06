@@ -32,7 +32,7 @@ public class UserRepository{
 
   public ResultSet dbRead() {
     ResultSet resSet = null;
-    String select = "SELECT email, password, firstname, lastname, age, address, phonenumber FROM users";
+    String select = "SELECT email, password, first_name, last_name, age, address, phone_number FROM users";
     try {
       PreparedStatement ps = DBManager.getConnection().prepareStatement(select);
       resSet = ps.executeQuery();
@@ -47,7 +47,7 @@ public class UserRepository{
   public void dbWrite(User user) throws LoginSampleException {
     try {
       Connection con = DBManager.getConnection();
-      String SQL = "INSERT INTO users (email, password, firstname, lastname, address, age, phonenumber)" +
+      String SQL = "INSERT INTO users (email, password, first_name, last_name, address, age, phone_number)" +
           " VALUES (?, ?, ?, ?, ?, ?, ?)";
       PreparedStatement ps = con.prepareStatement(SQL/*, Statement.RETURN_GENERATED_KEYS*/);
       ps.setString(1, user.getEmail());

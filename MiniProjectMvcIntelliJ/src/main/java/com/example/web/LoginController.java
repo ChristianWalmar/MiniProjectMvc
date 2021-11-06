@@ -1,33 +1,39 @@
 package com.example.web;
 
 import com.example.domain.LoginSampleException;
+import com.example.domain.models.Item;
 import com.example.domain.models.User;
+import com.example.domain.services.ItemService;
 import com.example.domain.services.LoginService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpSession;
+import java.util.ArrayList;
+import java.util.List;
 
 @Controller
 public class LoginController {
 
   //Inversion of Control
   private LoginService loginService = new LoginService();
+  private ItemService is = new ItemService();
 
   @GetMapping("/")
-  public String index (){
+  public String index() {
     return "index";
   }
 
   @GetMapping("/signup")
-  public String signup (){
+  public String signup() {
     return "signup";
   }
 
-    @PostMapping("/login")
+  @PostMapping("/login")
   public String loginUser(WebRequest request, Model model) {
 
     //Retrieve values from HTML form via WebRequest
@@ -41,12 +47,15 @@ public class LoginController {
     boolean isExists = loginService.checkIfUserExists(user);
 
 
-
     // Set user in session
     if (isExists) {
       User user1 = loginService.returnUser(user);
       request.setAttribute("user1", user1, WebRequest.SCOPE_SESSION);
       model.addAttribute("user1", user1);
+      ArrayList<Item> items = is.findAll(/*email*/);
+      model.addAttribute("items", items);
+
+
       return "/userpage";
 
     } else {
@@ -57,13 +66,13 @@ public class LoginController {
   }
 
   @GetMapping("/userpage")
-  public String userPage (){
+  public String userPage() {
     return "userpage";
   }
 
 
   @GetMapping("/logout")
-  public String logoutUser (HttpSession session){
+  public String logoutUser(HttpSession session) {
     session.invalidate();
     return "redirect:/";
   }
@@ -88,10 +97,7 @@ public class LoginController {
       request.setAttribute("user", user, WebRequest.SCOPE_SESSION);
       model.addAttribute("user", user);
 
-
-
       return "/index";
-
 
 
     } else { // If passwords don't match, an exception is thrown
@@ -99,4 +105,10 @@ public class LoginController {
     }
   }
 
+  @ExceptionHandler(LoginSampleException.class)
+  public String handleError(Model model, Exception exception) {
+    model.addAttribute("message", exception.getMessage());
+    return "exceptionPage";
+
+  }
 }

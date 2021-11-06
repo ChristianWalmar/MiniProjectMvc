@@ -2,48 +2,101 @@ package com.example.domain.models;
 
 public class Item {
 
-  private String title;
-  private String colour; // may be Enum?
-  private int amount;
+  private int itemID;
+  private String productName;
+  private String price;
+  private String url;
+  private String description;
+  private int wishlistNumber;
+  private String userEmail;
 
-
-
-  public Item(String title, String colour, int amount) {
-    this.title = title;
-    this.colour = colour;
-    this.amount = amount;
+  public Item(int itemID, String productName, String price, String url, String description, int wishlistNumber, String userEmail) {
+    this.itemID = itemID;
+    this.productName = productName;
+    this.price = price;
+    this.url = url;
+    this.description = description;
+    this.wishlistNumber = wishlistNumber;
+    this.userEmail = userEmail;
   }
 
-  public String getTitle() {
-    return title;
+  public Item(String productName, String price, String url, String description, int wishlistNumber, String userEmail) {
+    this.productName = productName;
+    this.price = price;
+    this.url = url;
+    this.description = description;
+    this.wishlistNumber = wishlistNumber;
+    this.userEmail = userEmail;
   }
 
-  public void setTitle(String title) {
-    this.title = title;
+  public Item(){}
+
+  public int getItemID() {
+    return itemID;
   }
 
-  public String getColour() {
-    return colour;
+  public void setItemID(int itemID) {
+    this.itemID = itemID;
   }
 
-  public void setColour(String colour) {
-    this.colour = colour;
+  public String getProductName() {
+    return productName;
   }
 
-  public int getAmount() {
-    return amount;
+  public void setProductName(String productName) {
+    this.productName = productName;
   }
 
-  public void setAmount(int amount) {
-    this.amount = amount;
+  public String getPrice() {
+    return price;
+  }
+
+  public void setPrice(String price) {
+    this.price = price;
+  }
+
+  public String getUrl() {
+    return url;
+  }
+
+  public void setUrl(String url) {
+    this.url = url;
+  }
+
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
+  }
+
+  public int getWishlistNumber() {
+    return wishlistNumber;
+  }
+
+  public void setWishlistNumber(int wishlistNumber) {
+    this.wishlistNumber = wishlistNumber;
+  }
+
+  public String getUserEmail() {
+    return userEmail;
+  }
+
+  public void setUserEmail(String userEmail) {
+    this.userEmail = userEmail;
   }
 
   @Override
   public String toString() {
     return "Item{" +
-        "title='" + title + '\'' +
-        ", colour='" + colour + '\'' +
-        ", amount=" + amount +
+        "itemID=" + itemID +
+        ", productName='" + productName + '\'' +
+        ", price='" + price + '\'' +
+        ", url='" + url + '\'' +
+        ", description='" + description + '\'' +
+        ", wishlistNumber=" + wishlistNumber +
+        ", userEmail='" + userEmail + '\'' +
         '}';
   }
 }

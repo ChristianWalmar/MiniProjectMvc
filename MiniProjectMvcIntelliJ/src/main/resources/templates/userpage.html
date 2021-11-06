@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 
 <head>
     <meta charset="UTF-8">
@@ -10,14 +11,93 @@
 <body>
 <p><b> Congratulations, <span th:text = "${user1.address}" />! You have successfully logged in</b></p>
 
-<div class="button-wrapper">
+<div class="button-wrapper-right">
     <button class="button1" onclick="location.href='/logout'" type="button">Logout</button>
 </div>
 
+<p> Her can you create or see available Items:</p>
 
+
+<form name="addItem" action="/addItem" method="POST">
+    Product name:<br>
+    <input type="text" name="productName">
+    <br>
+    Price:<br>
+    <input type="text" name="price">
+    <br>
+    Url:<br>
+    <input type="text" name="url">
+    <br>
+    Description:<br>
+    <input type="text" name="description">
+    <br>
+    Wishlist number:<br>
+    <input type="text" name="wishlistNumber">
+    <br>
+    User email:<br>
+    <input type="text" name="userEmail">
+    <br>
+
+    <div class="button-wrapper-left">
+        <button class="button1" type="submit">Add item</button>
+    </div>
+</form>
+
+
+<table>
+    <thead>
+    <tr>
+        <th> ID</th>
+        <th> Product name</th>
+        <th> Price</th>
+        <th> URL</th>
+        <th> Description</th>
+        <th> Wishlist number</th>
+        <th> User email</th>
+        <th> ACTION</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${items}">
+        <td th:text="${item.itemID}"></td>
+        <td th:text="${item.productName}"></td>
+        <td th:text="${item.price}"></td>
+        <td th:text="${item.url}"></td>
+        <td th:text="${item.description}"></td>
+        <td th:text="${item.wishlistNumber}"></td>
+        <td th:text="${item.userEmail}"></td>
+        <!--    <td> <a th:href="@{/showFormForUpdate/{id}(id=${item.itemID})}" class="btn btn-primary">Update</a>-->
+        <!--  <a th:href="@{/deleteItem/{itemID}(itemID=${item.itemID})}" class="btn btn-danger">Delete item</a>-->
+        </td>
+    </tr>
+    </tbody>
+</table>
 
 <p th:text="${session.values()}" th:unless="${session == null}">[...]</p>
 <p>Is session empty now?</p>
 <p th:text="${session.isEmpty()}" th:unless="${session == null}">[...]</p>
 </body>
 </html>
+
+
+
+<!--
+<form action="#" method="post" th:action="@{/addItem}" th:object="${item}">
+    <input type="text" th:field="*{itemID}"
+           placeholder="Product Name"/>
+    <input type="text" th:field="*{productName}"
+           placeholder="Product Name"/>
+    <input type="text" th:field="*{price}"
+           placeholder="Price"/>
+    <input type="text" th:field="*{url}"
+           placeholder="Url"/>
+    <input type="text" th:field="*{description}"
+           placeholder="Description"/>
+    <input type="text" th:field="*{wishlist_number}"
+           placeholder="WishlistNumber"/>
+    <input type="text" th:field="*{userEmail}"
+           placeholder="UserEmail"/>
+
+    <input type="submit" value="Submit item"/>
+</form>
+-->

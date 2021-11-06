@@ -59,7 +59,12 @@ input{
     justify-content: center;
 }
 
-.button-wrapper{
+.button-wrapper-left{
+    display: flex;
+    justify-content: left;
+}
+
+.button-wrapper-right{
     display: flex;
     justify-content: right;
 }
@@ -73,3 +78,21 @@ input{
     background-color: #9a9ba1;
     text-align: center;
 }
+
+label{
+    display: block;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
