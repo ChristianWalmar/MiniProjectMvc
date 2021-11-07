@@ -14,24 +14,31 @@ import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
-import java.util.List;
+
+
+
 
 @Controller
 public class LoginController {
 
-  //Inversion of Control
+
   private LoginService loginService = new LoginService();
   private ItemService is = new ItemService();
 
+  // main page "index"
   @GetMapping("/")
   public String index() {
     return "index";
   }
 
+
+  // "signup" page
   @GetMapping("/signup")
   public String signup() {
     return "signup";
   }
+
+
 
   @PostMapping("/login")
   public String loginUser(WebRequest request, Model model) {
@@ -52,25 +59,37 @@ public class LoginController {
       User user1 = loginService.returnUser(user);
       request.setAttribute("user1", user1, WebRequest.SCOPE_SESSION);
       model.addAttribute("user1", user1);
-      ArrayList<Item> items = is.findAll(/*email*/);
+
+    // Call arraylist and sort the items by users email
+      String emailTemp = user1.getEmail();
+      ArrayList<Item> items = is.findAll(emailTemp); // search of item objects by email
+
+    //  Assign model attribute to arraylist med  items
       model.addAttribute("items", items);
 
+    // Assign model attribute for "item1" object
+      Item item1 = new Item();
+      model.addAttribute("item1", item1);
 
+    // Go to next page after login
       return "/userpage";
 
     } else {
 
+    // or turn back to "index"
       return "redirect:/";
       /*throw new LoginSampleException("User could not be found in our user base ");*/
     }
   }
 
+  // users main page after login
   @GetMapping("/userpage")
   public String userPage() {
     return "userpage";
   }
 
 
+  // method for "Log out" button
   @GetMapping("/logout")
   public String logoutUser(HttpSession session) {
     session.invalidate();

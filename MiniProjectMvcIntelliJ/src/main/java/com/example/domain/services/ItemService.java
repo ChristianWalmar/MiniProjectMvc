@@ -15,8 +15,8 @@ public class ItemService {
     new ItemRepository().dbWrite(item);
   }
 
-  public ArrayList<Item> findAll(/*String email*/) {
-    return itemRepository.dbRead(/*email*/);
+  public ArrayList<Item> findAll(String email) {
+    return itemRepository.dbRead(email);
   }
 
 

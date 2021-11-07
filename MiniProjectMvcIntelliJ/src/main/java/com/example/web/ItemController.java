@@ -10,11 +10,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.ModelAndView;
+
 
 import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+
 
 
 @Controller
@@ -22,14 +21,7 @@ public class ItemController {
 
   private ItemService is = new ItemService();
 
-  @GetMapping("/showItems")
-  public String showItems(Model model, WebRequest request) {
-    User user = (User) request.getAttribute("user", WebRequest.SCOPE_SESSION);
-   /* String email = user.getEmail();*/
-    List<Item> items = is.findAll(/*email*/);
-    model.addAttribute("items", items);
-    return "itemsuser";
-  }
+
 
 
   /*@ModelAttribute("item")
@@ -43,27 +35,42 @@ public class ItemController {
     return "redirect:/showItems";
   }*/
 
-  @PostMapping("/addItem")
+
+  // method for "Add item" fields and button on "userpage"
+  @PostMapping("/addItem{item1}")
   public String saveItem (WebRequest request, Model model) throws LoginSampleException {
+
     //Retrieve values from HTML form via WebRequest
     String productName = request.getParameter("productName");
     String price = request.getParameter("price");
     String url = request.getParameter("url");
     String description = request.getParameter("description");
-    int wishlistNumber = Integer.parseInt(request.getParameter("wishlistNumber"));
+
+    String wishlistNr = request.getParameter("wishlistNumber");
+    int wishlistNumber = Integer.parseInt(wishlistNr);
+
     String userEmail = request.getParameter("userEmail");
-    Item item = new Item(productName,price, url, description, wishlistNumber, userEmail);
+
+    // Retrieve "item1" object from HTTP session and assign new values
+
+    Item item1 = new Item(productName,price, url, description, wishlistNumber, userEmail);
 
     // Work + data is delegated to login service
-    is.createItem(item);
-
-    request.setAttribute("item", item, WebRequest.SCOPE_SESSION);
-    model.addAttribute("user", item);
-    List<Item> items = is.findAll(/*email*/);
-    model.addAttribute("items", items);
+    is.createItem(item1);
 
     // Go to page
     return "redirect:/showItems";
+  }
+
+  // page show items for user, sorted by e-mail
+  @GetMapping("/showItems")
+  public String showItems(Model model, WebRequest request) {
+    User user = (User) request.getAttribute("user1", WebRequest.SCOPE_SESSION);
+    String email = user.getEmail();
+  /*  String email = "vs@hotmail.com";*/
+    ArrayList<Item> items = is.findAll(email);
+    model.addAttribute("items", items);
+    return "/itemsuser";
   }
 
 

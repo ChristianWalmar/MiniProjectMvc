@@ -10,13 +10,12 @@ import java.util.ArrayList;
 
 public class ItemRepository {
 
-  public ArrayList<Item> dbRead(/*String email*/) {
+  public ArrayList<Item> dbRead(String email) {
     ArrayList<Item> itemsTemp = new ArrayList<>();
     Item tmp = null;
     try {
       Connection con = DBManager.getConnection();
-      String SQL = "SELECT * FROM items";
-      /* String SQL = "SELECT * FROM items WHERE (user_email='" + email + "')";*/
+      String SQL = "SELECT * FROM items WHERE (user_email='" + email + "')";
       PreparedStatement ps = con.prepareStatement(SQL);
       ResultSet rs = ps.executeQuery();
       while (rs.next()) {

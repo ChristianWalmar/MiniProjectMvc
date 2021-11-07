@@ -90,9 +90,18 @@ table {
     border: 1px solid #ddd;
 }
 
+table.user-info {
+
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 150px;
+    border: 1px solid #ddd;
+}
+
 th, td {
     text-align: left;
     padding: 8px;
 }
+
 
 tr:nth-child(even){background-color: #f2f2f2}
