@@ -43,7 +43,7 @@ public class LoginService {
     ResultSet rs = userRepository.dbRead();
     try {
       while (rs.next()) {
-         /* int id = rs.getInt(1);*/
+          /* int id = rs.getInt(1);*/
           String email = rs.getString(1);
           String password = rs.getString(2);
           String firstname = rs.getString(3);

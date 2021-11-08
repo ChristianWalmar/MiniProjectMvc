@@ -58,10 +58,10 @@ public class UserRepository{
       ps.setInt(6, user.getAge());
       ps.setString(7, user.getPhoneNumber());
       ps.executeUpdate();
-      /*ResultSet ids = ps.getGeneratedKeys();
+      ResultSet ids = ps.getGeneratedKeys();
       ids.next();
       int id = ids.getInt(1);
-      user.setId(id);*/
+      user.setId(id);
        } catch (SQLException ex) {
       ex.printStackTrace();
     }

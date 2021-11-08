@@ -37,7 +37,7 @@ public class ItemController {
 
 
   // method for "Add item" fields and button on "userpage"
-  @PostMapping("/addItem{item1}")
+  @PostMapping("/addItem")
   public String saveItem (WebRequest request, Model model) throws LoginSampleException {
 
     //Retrieve values from HTML form via WebRequest
@@ -67,7 +67,6 @@ public class ItemController {
   public String showItems(Model model, WebRequest request) {
     User user = (User) request.getAttribute("user1", WebRequest.SCOPE_SESSION);
     String email = user.getEmail();
-  /*  String email = "vs@hotmail.com";*/
     ArrayList<Item> items = is.findAll(email);
     model.addAttribute("items", items);
     return "/itemsuser";
