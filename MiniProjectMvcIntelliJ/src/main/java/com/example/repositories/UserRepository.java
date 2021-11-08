@@ -1,36 +1,12 @@
 package com.example.repositories;
 
 import com.example.domain.LoginSampleException;
-import com.example.domain.models.Item;
 import com.example.domain.models.User;
 
 import java.sql.*;
-import java.util.ArrayList;
+
 
 public class UserRepository {
-
-  /*public User login(String email, String password) throws LoginSampleException {
-    try {
-      Connection con = DBManager.getConnection();
-      String SQL = "SELECT id, role FROM Users "
-          + "WHERE email = ? AND password = ?";
-      PreparedStatement ps = con.prepareStatement(SQL);
-      ps.setString(1, email);
-      ps.setString(2, password);
-      ResultSet rs = ps.executeQuery();
-      if (rs.next()) {
-        String role = rs.getString("role");
-        int id = rs.getInt("id");
-        User user = new User(email, password);
-        user.setId(id);
-        return user;
-      } else {
-        throw new LoginSampleException("Could not validate user");
-      }
-    } catch (SQLException ex) {
-      throw new LoginSampleException(ex.getMessage());
-    }
-  }*/
 
   public ResultSet dbRead() {
     ResultSet resSet = null;
@@ -91,5 +67,4 @@ public class UserRepository {
     }
     return tmp;
   }
-
 }

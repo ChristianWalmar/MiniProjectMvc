@@ -15,8 +15,6 @@
     <button class="button1" onclick="location.href='/logout'" type="button">Logout</button>
 </div>
 
-
-
 <table class="user-info">
     <thead>
     <tr><th>You are logged in as:</th></tr>
@@ -57,32 +55,9 @@
     </tbody>
 </table>
 
+<p> Her can you create an item for a Wishlist:</p>
 
-
-<p> Her can you create or see available Items:</p>
-
-
-
-<form action="#" method="post" th:action="@{/addItem}" th:object="${item1}">
-    <input type="text" th:field="*{itemID}"
-           value="Product Name"/>
-    <input type="text" th:field="*{productName}"
-           value="Product Name"/>
-    <input type="text" th:field="*{price}"
-           value="Price"/>
-    <input type="text" th:field="*{url}"
-           value="Url"/>
-    <input type="text" th:field="*{description}"
-           value="Description"/>
-    <input type="text" th:field="*{wishlistNumber}"
-           value="WishlistNumber"/>
-    <input type="text" th:field="*{userEmail}"
-           th:name="UserEmail"/>
-
-    <input type="submit" value="Submit item"/>
-</form>
-
-
+<form style="border: none" action="#" method="post" th:action="@{/addItem}" th:object="${item1}">
 <table>
     <thead>
     <tr>
@@ -98,22 +73,22 @@
     </thead>
     <tbody>
     <tr>
-        <td> <input type="text" th:field="*{item1.itemID}"/></td>
-        <td> <input type="text" th:field="*{item1.productName}"/></td>
-        <td> <input type="text" th:field="*{item1.price}"/></td>
-        <td> <input type="text" th:field="*{item1.url}"/></td>
-        <td> <input type="text" th:field="*{item1.description}"/></td>
-        <td> <input type="text" th:field="*{item1.wishlistNumber}"/></td>
-        <td> <input type="text" th:field="*{item1.userEmail}"/></td>
-       <!-- <td> <a th:href="@{/addItem}" th:object="${item1}">Add item</a></td>-->
-        <td><a th:a="@{/iddItem/}" >Add item</a></td>
-       <!-- <td> <input type="submit" value="Add item" action = th:action="@{/addItem}" th:object="${item1}"/>-->
-        <!--    th:href="@{'/category/'+ ${item.idCategory}}"-->
- <!--      <td> <a th:href="@{/showFormForUpdate/{id}(id=${item.itemID})}" class="btn btn-primary">Update</a>-->
-        <!--  <a th:href="@{/deleteItem/{itemID}(itemID=${item.itemID})}" class="btn btn-danger">Delete item</a>-->
+        <td> <input type="text" th:field="*{itemID}"/></td>
+        <td> <input type="text" th:field="*{productName}"/></td>
+        <td> <input type="text" th:field="*{price}"/></td>
+        <td> <input type="text" th:field="*{url}"/></td>
+        <td> <input type="text" th:field="*{description}"/></td>
+        <td> <input type="text" th:field="*{wishlistNumber}"/></td>
+        <td> <input type="text" th:field="*{userEmail}"/></td>
+        <td> <div class="button-wrapper-right">
+            <button class="button1" onclick="location.href='/addItem'" type="submit">Submit item</button>
+        </div>
+        </td>
     </tr>
 </table>
+</form>
 
+<p> Her can you see all the items in all Wishlists of current User :</p>
 
 <table>
     <thead>
@@ -149,3 +124,22 @@
 </body>
 </html>
 
+
+<!--<form action="#" method="post" th:action="@{/addItem}" th:object="${item1}">
+    <input type="text" th:field="*{itemID}"
+           value="Item ID" />
+    <input type="text" th:field="*{productName}"
+           value="Product name"/>
+    <input type="text" th:field="*{price}"
+           value="Price"/>
+    <input type="text" th:field="*{url}"
+           value="Url"/>
+    <input type="text" th:field="*{description}"
+           value="Description"/>
+    <input type="text" th:field="*{wishlistNumber}"
+           value="WishlistNumber"/>
+    <input type="text" th:field="*{userEmail}"
+           th:name="UserEmail" placeholder="Insert email her"/>
+
+    <input type="submit" value="Submit item"/>
+</form>-->

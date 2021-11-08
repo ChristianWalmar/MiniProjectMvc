@@ -11,25 +11,14 @@ public class LoginService {
   private UserRepository userRepository = new UserRepository();
 
 
-
-/*
-  // Dependency injection
-  public LoginService(UserRepository userRepository) {
-    this.userRepository = userRepository;
-  }
-*/
-
- /* public User login(String email, String password) throws LoginSampleException {
-    return userRepository.login(email, password);
-  }*/
-
-
-  public boolean checkIfUserExists(User userEntered) {
+  public boolean checkIfUserExists(User userEntered) { // checkIfUserExistsLogin
     ResultSet rs = userRepository.dbRead();
     try {
       while (rs.next()) {
        String userTempEmail = rs.getString(1);
-        if ((userTempEmail).equals(userEntered.getEmail())) {
+       String userTempPassword = rs.getString(2);
+        if ((userTempEmail).equals(userEntered.getEmail())&&
+            (userTempPassword).equals(userEntered.getPassword())) {
           return true;
         }
       }
@@ -38,7 +27,7 @@ public class LoginService {
     }
     return false;
   }
-
+ 
   public User returnUser(User userEntered) {
     ResultSet rs = userRepository.dbRead();
     try {
@@ -66,5 +55,9 @@ public class LoginService {
 
   public void createUser(User user) throws LoginSampleException {
     userRepository.dbWrite(user);
+  }
+
+  public User findUserByEmail(String email){
+   return userRepository.returnUser(email);
   }
 }

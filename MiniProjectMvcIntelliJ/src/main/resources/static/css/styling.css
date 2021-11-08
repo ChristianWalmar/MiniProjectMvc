@@ -30,6 +30,13 @@ form {
     width: 300px;
 }
 
+form.add-item {
+
+    padding: 5px 0 5px 5px;
+    margin-bottom: 30px;
+    width: 300px;
+}
+
 input{
     margin-top: 5px;
     margin-bottom: 5px;

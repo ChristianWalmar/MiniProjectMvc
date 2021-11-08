@@ -5,7 +5,6 @@ import com.example.domain.models.Item;
 import com.example.domain.models.User;
 import com.example.domain.services.ItemService;
 import com.example.domain.services.LoginService;
-import com.example.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -16,8 +15,7 @@ import org.springframework.web.context.request.WebRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
-
-
+import java.util.Objects;
 
 
 @Controller
@@ -43,7 +41,7 @@ public class LoginController {
 
 
   @PostMapping("/login")
-  public String loginUser(HttpServletRequest request, Model model) {
+  public String loginUser(HttpServletRequest request, Model model) throws LoginSampleException {
 
     HttpSession session = request.getSession();
     //Retrieve values from HTML form via WebRequest
@@ -52,21 +50,28 @@ public class LoginController {
     // delegate work + data to login service
     User user = new User(email, password);
     boolean isExists = loginService.checkIfUserExists(user);
-    // Set user in session
-    if (isExists) {
-      User user1 = loginService.returnUser(user);
-      session.setAttribute("email", email);
-     /* model.addAttribute("user1", user1);*/
 
+    if (Objects.equals(email, "") || Objects.equals(password, "")) {
+      throw new LoginSampleException("You have to fill in all the fields...");
 
-    // Go to next page after login
-      return "redirect:/userpage";
-
+      /*return "redirect:/";*/
     } else {
+      if (isExists) {
+        // Set user in session
+        User user1 = loginService.returnUser(user);
+        session.setAttribute("email", email);
+        /* model.addAttribute("user1", user1);*/
 
-    // or turn back to "index"
-      return "redirect:/";
-      /*throw new LoginSampleException("User could not be found in our user base ");*/
+
+        // Go to next page after login
+        return "redirect:/userpage";
+
+      } else {
+        throw new LoginSampleException("User is not exists, please try again");
+        // or turn back to "index"
+        /*return "redirect:/";*/
+        /*throw new LoginSampleException("User could not be found in our user base ");*/
+      }
     }
   }
 
@@ -75,7 +80,9 @@ public class LoginController {
   public String userPage(Model model, HttpServletRequest request) {
     HttpSession session = request.getSession();
     String emailTemp = (String) session.getAttribute("email");
-    User user1 = new UserRepository().returnUser(emailTemp);
+
+    User user1 = loginService.findUserByEmail(emailTemp);
+
     model.addAttribute("user1", user1);
     // Call arraylist and sort the items by users email
 
