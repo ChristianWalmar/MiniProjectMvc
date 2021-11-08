@@ -11,14 +11,18 @@ public class ItemService {
 
   private ItemRepository itemRepository = new ItemRepository();
 
-  public void createItem(Item item) throws LoginSampleException {
-    new ItemRepository().dbWrite(item);
-  }
 
   public ArrayList<Item> findAll(String email) {
     return itemRepository.dbRead(email);
   }
 
+  public void createItem(Item item) throws LoginSampleException {
+    new ItemRepository().dbWrite(item);
+  }
 
+
+   public void deleteItem(int itemID){
+    itemRepository.deleteItemFromDB(itemID);
+   }
 
 }

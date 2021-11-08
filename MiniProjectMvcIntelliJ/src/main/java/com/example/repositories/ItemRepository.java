@@ -59,6 +59,17 @@ public class ItemRepository {
         }
       return item;
     }
+
+  public void deleteItemFromDB(int itemID){
+    try {
+      Connection con = DBManager.getConnection();
+      String SQL = "DELETE FROM items WHERE (item_id='" + itemID + "')";
+      PreparedStatement ps = con.prepareStatement(SQL);
+      ps.executeUpdate();
+    } catch (SQLException ex) {
+      ex.printStackTrace();
+    }
+  }
 }
 
 

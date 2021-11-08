@@ -4,7 +4,6 @@ package com.example.web;
 import com.example.domain.LoginSampleException;
 
 import com.example.domain.models.Item;
-import com.example.domain.models.User;
 import com.example.domain.services.ItemService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,28 +11,10 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
 
-import java.util.ArrayList;
-
-
-
 @Controller
 public class ItemController {
 
-  private ItemService is = new ItemService();
-
-
-
-
-  /*@ModelAttribute("item")
-  public Item getItem(){
-    return new Item();
-  }
-
-  @PostMapping("/addItem")
-  public String saveItem (@ModelAttribute ("item") Item item) throws LoginSampleException {
-    is.createItem(item);
-    return "redirect:/showItems";
-  }*/
+  private ItemService itemService = new ItemService();
 
 
   // method for "Add item" fields and button on "userpage"
@@ -57,17 +38,17 @@ public class ItemController {
     Item item1 = new Item(productName,price, url, description, wishlistNumber, email);
 
     // Work + data is delegated to login service
-    is.createItem(item1);
+    itemService.createItem(item1);
 
     // Go to page
     return "redirect:/userpage";
   }
 
 
-  /*@GetMapping("/deleteItem/{itemID}")
-  public String deleteItem (@PathVariable(value = "itemID") int itemID){
-    is.deleteUser(itemID);
-    return "redirect:/userLogged";
-  }*/
+  @GetMapping("/deleteItem/{itemID}") // GET???
+  public String deleteItem (@PathVariable(value = "itemID") int itemID) {
+    itemService.deleteItem(itemID);
+    return "redirect:/userpage";
+  }
 
 }

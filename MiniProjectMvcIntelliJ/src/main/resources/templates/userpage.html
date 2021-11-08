@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:th="http://www.thymeleaf.org">
 
@@ -61,27 +61,27 @@
 <table>
     <thead>
     <tr>
-        <th> Item ID</th>
+      <!--  <th> Item ID</th>-->
         <th> Product name</th>
         <th> Price</th>
         <th> URL</th>
         <th> Description</th>
         <th> Wishlist number</th>
-        <th> User email</th>
+       <!-- <th> User email</th>-->
         <th> ACTION</th>
     </tr>
     </thead>
     <tbody>
     <tr>
-        <td> <input type="text" th:field="*{itemID}"/></td>
+       <!-- <td> <input type="text" th:field="*{itemID}"/></td>-->
         <td> <input type="text" th:field="*{productName}"/></td>
         <td> <input type="text" th:field="*{price}"/></td>
         <td> <input type="text" th:field="*{url}"/></td>
         <td> <input type="text" th:field="*{description}"/></td>
         <td> <input type="text" th:field="*{wishlistNumber}"/></td>
-        <td> <input type="text" th:field="*{userEmail}"/></td>
+      <!--  <td> <input type="text" th:field="*{userEmail}"/></td>-->
         <td> <div class="button-wrapper-right">
-            <button class="button1" onclick="location.href='/addItem'" type="submit">Submit item</button>
+            <button class="button1" onclick="location.href='/addItem'" type="submit">Add item</button>
         </div>
         </td>
     </tr>
@@ -89,6 +89,7 @@
 </form>
 
 <p> Her can you see all the items in all Wishlists of current User :</p>
+
 
 <table>
     <thead>
@@ -99,25 +100,27 @@
         <th> URL</th>
         <th> Description</th>
         <th> Wishlist number</th>
-        <th> User email</th>
+       <!-- <th> User email</th>-->
         <th> ACTION</th>
     </tr>
     </thead>
     <tbody>
     <tr th:each="item1 : ${items}">
-        <td th:text="${item1.itemID}"></td>
+        <td style="background-color: cornflowerblue" th:text="${item1.itemID}"></td>
         <td th:text="${item1.productName}"></td>
         <td th:text="${item1.price}"></td>
         <td th:text="${item1.url}"></td>
         <td th:text="${item1.description}"></td>
         <td th:text="${item1.wishlistNumber}"></td>
-        <td th:text="${item1.userEmail}"></td>
-        <!--    <td> <a th:href="@{/showFormForUpdate/{id}(id=${item.itemID})}" class="btn btn-primary">Update</a>-->
-        <!--  <a th:href="@{/deleteItem/{itemID}(itemID=${item.itemID})}" class="btn btn-danger">Delete item</a>-->
-        </td>
+        <!--<td th:text="${item1.userEmail}"></td>-->
+        <td><a th:href="@{/deleteItem/{itemID}(itemID=${item1.itemID})}">Delete item</a></td>
+        <!--<td><div class="button-wrapper-right">
+            <a class="button1" th:href="@{/deleteItem/{itemID}(itemID=${item1.itemID})}">Delete item</a>
+        </div></td>-->
     </tr>
     </tbody>
 </table>
+
 
 <p>Is session empty now?</p>
 <p th:text="${session.isEmpty()}" th:unless="${session == null}">[...]</p>
