@@ -59,17 +59,7 @@ public class ItemController {
     is.createItem(item1);
 
     // Go to page
-    return "redirect:/showItems";
-  }
-
-  // page show items for user, sorted by e-mail
-  @GetMapping("/showItems")
-  public String showItems(Model model, WebRequest request) {
-    User user = (User) request.getAttribute("user1", WebRequest.SCOPE_SESSION);
-    String email = user.getEmail();
-    ArrayList<Item> items = is.findAll(email);
-    model.addAttribute("items", items);
-    return "/itemsuser";
+    return "redirect:/userpage";
   }
 
 

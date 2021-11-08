@@ -1,11 +1,13 @@
 package com.example.repositories;
 
 import com.example.domain.LoginSampleException;
+import com.example.domain.models.Item;
 import com.example.domain.models.User;
 
 import java.sql.*;
+import java.util.ArrayList;
 
-public class UserRepository{
+public class UserRepository {
 
   /*public User login(String email, String password) throws LoginSampleException {
     try {
@@ -43,7 +45,6 @@ public class UserRepository{
   }
 
 
-
   public void dbWrite(User user) throws LoginSampleException {
     try {
       Connection con = DBManager.getConnection();
@@ -62,9 +63,33 @@ public class UserRepository{
       ids.next();
       int id = ids.getInt(1);
       user.setId(id);
-       } catch (SQLException ex) {
+    } catch (SQLException ex) {
       ex.printStackTrace();
     }
+  }
+
+  public User returnUser(String email) {
+    System.out.println(email);
+    User tmp = new User();
+    try {
+      Connection con = DBManager.getConnection();
+      String SQL = "SELECT * FROM users WHERE (email='" + email + "')";
+      PreparedStatement ps = con.prepareStatement(SQL);
+      ResultSet rs = ps.executeQuery();
+      while (rs.next()) {
+        tmp.setId(rs.getInt(1));
+        tmp.setEmail(rs.getString(2));
+        tmp.setPassword(rs.getString(3));
+        tmp.setFirstName(rs.getString(4));
+        tmp.setLastName(rs.getString(5));
+        tmp.setAge(rs.getInt(6));
+        tmp.setAddress(rs.getString(7));
+        tmp.setPhoneNumber(rs.getString(8));
+      }
+    } catch (SQLException ex) {
+      System.out.println(ex.getMessage());
+    }
+    return tmp;
   }
 
 }

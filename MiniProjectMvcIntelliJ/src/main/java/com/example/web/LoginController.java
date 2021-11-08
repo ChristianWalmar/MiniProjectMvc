@@ -5,6 +5,7 @@ import com.example.domain.models.Item;
 import com.example.domain.models.User;
 import com.example.domain.services.ItemService;
 import com.example.domain.services.LoginService;
+import com.example.repositories.UserRepository;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
@@ -41,38 +43,24 @@ public class LoginController {
 
 
   @PostMapping("/login")
-  public String loginUser(WebRequest request, Model model) {
+  public String loginUser(HttpServletRequest request, Model model) {
 
+    HttpSession session = request.getSession();
     //Retrieve values from HTML form via WebRequest
     String email = request.getParameter("email");
     String password = request.getParameter("password");
-
-
     // delegate work + data to login service
-
     User user = new User(email, password);
     boolean isExists = loginService.checkIfUserExists(user);
-
-
     // Set user in session
     if (isExists) {
       User user1 = loginService.returnUser(user);
-      request.setAttribute("user1", user1, WebRequest.SCOPE_SESSION);
-      model.addAttribute("user1", user1);
+      session.setAttribute("email", email);
+     /* model.addAttribute("user1", user1);*/
 
-    // Call arraylist and sort the items by users email
-      String emailTemp = user1.getEmail();
-      ArrayList<Item> items = is.findAll(emailTemp); // search of item objects by email
-
-    //  Assign model attribute to arraylist med  items
-      model.addAttribute("items", items);
-
-    // Assign model attribute for "item1" object
-      Item item1 = new Item();
-      model.addAttribute("item1", item1);
 
     // Go to next page after login
-      return "/userpage";
+      return "redirect:/userpage";
 
     } else {
 
@@ -84,7 +72,21 @@ public class LoginController {
 
   // users main page after login
   @GetMapping("/userpage")
-  public String userPage() {
+  public String userPage(Model model, HttpServletRequest request) {
+    HttpSession session = request.getSession();
+    String emailTemp = (String) session.getAttribute("email");
+    User user1 = new UserRepository().returnUser(emailTemp);
+    model.addAttribute("user1", user1);
+    // Call arraylist and sort the items by users email
+
+    ArrayList<Item> items = is.findAll(emailTemp); // search of item objects by email
+
+    //  Assign model attribute to arraylist med  items
+    model.addAttribute("items", items);
+
+    // Assign model attribute for "item1" object
+    Item item1 = new Item();
+    model.addAttribute("item1", item1);
     return "userpage";
   }
 
