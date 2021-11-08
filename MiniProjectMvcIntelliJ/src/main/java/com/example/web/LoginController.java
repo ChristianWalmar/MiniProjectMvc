@@ -57,11 +57,8 @@ public class LoginController {
       /*return "redirect:/";*/
     } else {
       if (isExists) {
-        // Set user in session
-        User user1 = loginService.returnUser(user);
+        // Set email in session
         session.setAttribute("email", email);
-        /* model.addAttribute("user1", user1);*/
-
 
         // Go to next page after login
         return "redirect:/userpage";

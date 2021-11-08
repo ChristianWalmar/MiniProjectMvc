@@ -2,57 +2,35 @@ package com.example.domain.models;
 
 public class Wishlist {
 
-  private int wishlistID;
-  private String wishlistEmail; // owner e-mail?
-  private String wishlistUrl;
-  private int wishId;
+  private int wishlistNumber;
+  private String wishlistName;
 
-  public Wishlist(int wishlistID, String wishlistEmail, String wishlistUrl, int wishId) {
-    this.wishlistID = wishlistID;
-    this.wishlistEmail = wishlistEmail;
-    this.wishlistUrl = wishlistUrl;
-    this.wishId = wishId;
+  public Wishlist(int wishlistNumber, String wishlistName) {
+    this.wishlistNumber = wishlistNumber;
+    this.wishlistName = wishlistName;
   }
 
-  public int getWishlistID() {
-    return wishlistID;
+  public int getWishlistNumber() {
+    return wishlistNumber;
   }
 
-  public void setWishlistID(int wishlistID) {
-    this.wishlistID = wishlistID;
+  public void setWishlistNumber(int wishlistNumber) {
+    this.wishlistNumber = wishlistNumber;
   }
 
-  public String getWishlistEmail() {
-    return wishlistEmail;
+  public String getWishlistName() {
+    return wishlistName;
   }
 
-  public void setWishlistEmail(String wishlistEmail) {
-    this.wishlistEmail = wishlistEmail;
-  }
-
-  public String getWishlistUrl() {
-    return wishlistUrl;
-  }
-
-  public void setWishlistUrl(String wishlistUrl) {
-    this.wishlistUrl = wishlistUrl;
-  }
-
-  public int getWishId() {
-    return wishId;
-  }
-
-  public void setWishId(int wishId) {
-    this.wishId = wishId;
+  public void setWishlistName(String wishlistName) {
+    this.wishlistName = wishlistName;
   }
 
   @Override
   public String toString() {
     return "Wishlist{" +
-        "wishlistID=" + wishlistID +
-        ", wishlistEmail='" + wishlistEmail + '\'' +
-        ", wishlistUrl='" + wishlistUrl + '\'' +
-        ", wishId=" + wishId +
+        "wishlistNumber=" + wishlistNumber +
+        ", wishlistName='" + wishlistName + '\'' +
         '}';
   }
 }
