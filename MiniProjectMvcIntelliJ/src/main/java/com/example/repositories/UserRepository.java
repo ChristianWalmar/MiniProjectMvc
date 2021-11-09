@@ -45,8 +45,7 @@ public class UserRepository {
   }
 
   public User returnUser(String email) {
-    System.out.println(email);
-    User tmp = new User();
+     User tmp = new User();
     try {
       Connection con = DBManager.getConnection();
       String SQL = "SELECT * FROM users WHERE (email='" + email + "')";

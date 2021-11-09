@@ -55,6 +55,49 @@
     </tbody>
 </table>
 
+<p> Her can you create  a Wishlist:</p>
+
+<form style="border: none" action="#" method="post" th:action="@{/addWishlist}" th:object="${wishlist1}">
+    <table>
+        <thead>
+        <tr>
+            <th> Wishlist name</th>
+            <!--<th> Wishlist owner email</th>-->
+            <th> ACTION</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr>
+            <td> <input type="text" th:field="*{wishlistName}"/></td>
+            <!--<td> <input type="text" th:field="*{wishlistOwnerEmail}"/></td>-->
+            <td> <div class="button-wrapper-right">
+                <button class="button1" onclick="location.href='/addWishlist'" type="submit">Add Wishlist</button>
+            </div>
+            </td>
+        </tr>
+    </table>
+    </form>
+
+<p>Show available Wishlists:</p>
+
+<table>
+    <thead>
+    <tr>
+        <th> Wishlist name</th>
+       <!-- <th> ACTION</th>-->
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="wishlist1 : ${wishlists}">
+        <td th:text="${wishlist1.wishlistName}"></td>
+        <td><a th:href="@{/deleteWishlist/{wishlistName}(wishlistName=${wishlist1.wishlistName})}">
+            <img src="/images/trashcan.png" alt="Trashcan">
+        </a></td>
+    </tr>
+    </tbody>
+</table>
+
+
 <p> Her can you create an item for a Wishlist:</p>
 
 <form style="border: none" action="#" method="post" th:action="@{/addItem}" th:object="${item1}">
@@ -132,32 +175,3 @@
 </body>
 </html>
 
-
-<!--
-<p> Her can you create  a Wishlist:</p>
-
-<form style="border: none" action="#" method="post" th:action="@{/addItem}" th:object="${item1}">
-    <table>
-        <thead>
-        <tr>
-            <th> Wishlist name</th>
-            <th> Wishlist owner email</th>
-            <th> ACTION</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr>
-            &lt;!&ndash; <td> <input type="text" th:field="*{itemID}"/></td>&ndash;&gt;
-            <td> <input type="text" th:field="*{productName}"/></td>
-            <td> <input type="text" th:field="*{price}"/></td>
-            <td> <input type="text" th:field="*{url}"/></td>
-            <td> <input type="text" th:field="*{description}"/></td>
-
-            &lt;!&ndash;  <td> <input type="text" th:field="*{userEmail}"/></td>&ndash;&gt;
-            <td> <div class="button-wrapper-right">
-                <button class="button1" onclick="location.href='/addItem'" type="submit">Add item</button>
-            </div>
-            </td>
-        </tr>
-    </table>
-</form-->

@@ -11,6 +11,10 @@ public class Wishlist {
     this.wishlistOwnerEmail = wishlistOwnerEmail;
   }
 
+  public Wishlist() {
+
+  }
+
 
   public String getWishlistName() {
     return wishlistName;

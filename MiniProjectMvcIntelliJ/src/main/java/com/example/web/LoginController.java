@@ -3,8 +3,10 @@ package com.example.web;
 import com.example.domain.LoginSampleException;
 import com.example.domain.models.Item;
 import com.example.domain.models.User;
+import com.example.domain.models.Wishlist;
 import com.example.domain.services.ItemService;
 import com.example.domain.services.LoginService;
+import com.example.domain.services.WishlistService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -23,7 +25,8 @@ public class LoginController {
 
 
   private LoginService loginService = new LoginService();
-  private ItemService is = new ItemService();
+  private ItemService itemService = new ItemService();
+  private WishlistService wishlistService = new WishlistService();
 
   // main page "index"
   @GetMapping("/")
@@ -81,9 +84,9 @@ public class LoginController {
     User user1 = loginService.findUserByEmail(emailTemp);
 
     model.addAttribute("user1", user1);
-    // Call arraylist and sort the items by users email
 
-    ArrayList<Item> items = is.findAll(emailTemp); // search of item objects by email
+    // Call arraylist and sort the items by users email
+    ArrayList<Item> items = itemService.findAll(emailTemp); // search of item objects by email
 
     //  Assign model attribute to arraylist med  items
     model.addAttribute("items", items);
@@ -91,7 +94,18 @@ public class LoginController {
     // Assign model attribute for "item1" object
     Item item1 = new Item();
     model.addAttribute("item1", item1);
-    return "userpage";
+
+    // Call arraylist and sort the wishlists by users email
+    ArrayList<Wishlist> wishlists = wishlistService.findAll(emailTemp); // search of wishlist objects by email
+
+    //  Assign model attribute to arraylist med  items
+    model.addAttribute("wishlists", wishlists);
+
+    // Assign model attribute for "item1" object
+    Wishlist wishlist1 = new Wishlist();
+    model.addAttribute("wishlist1", wishlist1);
+
+        return "userpage";
   }
 
 

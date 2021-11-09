@@ -35,7 +35,7 @@ CREATE TABLE `users` (
   `phone_number` varchar(100) NOT NULL,
   PRIMARY KEY (`user_id`),
   UNIQUE KEY `email_UNIQUE` (`email`)
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -44,7 +44,7 @@ CREATE TABLE `users` (
 
 LOCK TABLES `users` WRITE;
 /*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'vitaly_s@jubii.dksds','11','Vitaliy','Serdyukov',1,'Kingosvej 37, 1.tv.','+4552526060'),(2,'serdyukov_vitaliy@hotmail.sdsdcom','111','v','Serdyukov',4,'wdsds','dsssdsds'),(3,'vitaly_s@jubii.dk','333','Vitaliy','Serdyukov',2323,'Kingosvej 37, 1.tv.','+4552526060'),(4,'vitaly_s@jubii.dkqwqwqkk','1','Vitaliy','Serdyukov',1,'Kingosvej 37, 1.tv.','+4552526060'),(5,'xasas','22','33','33',2,'dsdd','aasas'),(6,'test','11','sfsd','sdsd',2,'TESTTEST','sfsds'),(7,'test2','test2','test2','test2',2,'test2','test2'),(8,'test1','test2','test3','test4',6,'test5','test7'),(9,'sdds','11','dfdf','dfdf',1,'dfdf','dfdfd'),(10,'vs@hotmail.com','12','v','s',3,'h','23232323'),(12,'vs1@hotmail.com','12','jk','jll',3,'jjlk','mlmlm'),(13,'test111','123','ssf','dfdf',24,'dfdf','dfdfd'),(14,'test3','33','test3','test3',33,'test3','33333333');
+INSERT INTO `users` VALUES (1,'vitaly_s@jubii.dksds','11','Vitaliy','Serdyukov',1,'Kingosvej 37, 1.tv.','+4552526060'),(2,'serdyukov_vitaliy@hotmail.sdsdcom','111','v','Serdyukov',4,'wdsds','dsssdsds'),(3,'vitaly_s@jubii.dk','333','Vitaliy','Serdyukov',2323,'Kingosvej 37, 1.tv.','+4552526060'),(4,'vitaly_s@jubii.dkqwqwqkk','1','Vitaliy','Serdyukov',1,'Kingosvej 37, 1.tv.','+4552526060'),(5,'xasas','22','33','33',2,'dsdd','aasas'),(6,'test','11','sfsd','sdsd',2,'TESTTEST','sfsds'),(7,'test2','test2','test2','test2',2,'test2','test2'),(8,'test1','test2','test3','test4',6,'test5','test7'),(9,'sdds','11','dfdf','dfdf',1,'dfdf','dfdfd'),(10,'vs@hotmail.com','12','v','s',3,'h','23232323'),(12,'vs1@hotmail.com','12','jk','jll',3,'jjlk','mlmlm'),(13,'test111','123','ssf','dfdf',24,'dfdf','dfdfd'),(14,'test3','33','test3','test3',33,'test3','33333333'),(15,'vitaliy_serdyukov@hotmail.com','12','Vitaliy','Serdyukov',100,'Taastrup','12345678');
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -57,4 +57,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2021-11-08 10:48:24
+-- Dump completed on 2021-11-09 13:37:56
