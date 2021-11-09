@@ -39,6 +39,7 @@ public class ItemController {
     // Work + data is delegated to login service
     itemService.createItem(item1);
 
+    model.addAttribute("item1", item1);  // ?????
     // Go to page
     return "redirect:/userpage";
   }

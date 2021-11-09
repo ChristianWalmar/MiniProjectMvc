@@ -1,6 +1,7 @@
 package com.example.domain.services;
 
 import com.example.domain.LoginSampleException;
+import com.example.domain.models.Item;
 import com.example.domain.models.Wishlist;
 import com.example.repositories.WishlistRepository;
 
@@ -14,6 +15,7 @@ public class WishlistService {
     wishlistRepository.dbWrite(wishlist);
   }
 
+  // skal evt. fjernes senere?
   public ArrayList<Wishlist> findAll(String email) {
     return wishlistRepository.dbRead(email);
   }
@@ -21,5 +23,9 @@ public class WishlistService {
 
   public void deleteWishlist(String wishlistName){
     wishlistRepository.deleteWishlistFromDB(wishlistName);
+  }
+
+  public ArrayList<Item>showWishlist(String wishlistName){
+    return wishlistRepository.dbReadOneList(wishlistName);
   }
 }

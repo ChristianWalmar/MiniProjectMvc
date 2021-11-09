@@ -101,7 +101,8 @@ public class LoginController {
     //  Assign model attribute to arraylist med  items
     model.addAttribute("wishlists", wishlists);
 
-    // Assign model attribute for "item1" object
+
+    // Assign model attribute for "wishlist1" object
     Wishlist wishlist1 = new Wishlist();
     model.addAttribute("wishlist1", wishlist1);
 

@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
+import java.util.ArrayList;
+
 
 @Controller
 public class WishlistController {
@@ -21,7 +23,7 @@ public class WishlistController {
 
   // method for "Add wishlist" fields and button on "userpage"
   @PostMapping("/addWishlist")
-  public String saveWishlist (WebRequest request, Model model) throws LoginSampleException {
+  public String saveWishlist(WebRequest request, Model model) throws LoginSampleException {
     //Retrieve values from HTML form via WebRequest
 
     String wishlistName = request.getParameter("wishlistName");
@@ -41,8 +43,30 @@ public class WishlistController {
 
 
   @GetMapping("/deleteWishlist/{wishlistName}") // GET???
-  public String deleteWishlist (@PathVariable(value = "wishlistName") String wishlistName) {
+  public String deleteWishlist(@PathVariable(value = "wishlistName") String wishlistName) {
     wishlistService.deleteWishlist(wishlistName);
     return "redirect:/userpage";
   }
+
+
+  @GetMapping("/showWishlist/{wishlistName}") // GET???
+  public String showWishlist(Model model, @PathVariable(value = "wishlistName") String wishlistName) {
+
+    // Call arraylist and sort the items by wishlistName
+    ArrayList<Item> itemsOneList = wishlistService.showWishlist(wishlistName);
+
+    //  Assign model attribute to arraylist med  items
+    model.addAttribute("itemsOneList", itemsOneList);
+
+    // Assign model attribute for "item1" object
+    Item item1 = new Item();
+    model.addAttribute("item1", item1);  // ??????
+
+    /*wishlistService.showWishlist(wishlistName);*/
+    return "showlist";
+  }
+
+
 }
+
+
