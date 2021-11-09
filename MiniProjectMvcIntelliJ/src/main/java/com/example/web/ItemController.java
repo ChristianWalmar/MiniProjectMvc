@@ -27,15 +27,14 @@ public class ItemController {
     String url = request.getParameter("url");
     String description = request.getParameter("description");
 
-    String wishlistNr = request.getParameter("wishlistNumber");
-    int wishlistNumber = Integer.parseInt(wishlistNr);
+    String wishlistName = request.getParameter("wishlistName");
 
     // Retrieve "email" String object from HTTP session
     String email = (String) request.getAttribute("email", WebRequest.SCOPE_SESSION);
 
 
     // Make "item1" object and assign new values
-    Item item1 = new Item(productName,price, url, description, wishlistNumber, email);
+    Item item1 = new Item(productName,price, url, description, wishlistName, email);
 
     // Work + data is delegated to login service
     itemService.createItem(item1);

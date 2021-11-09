@@ -7,25 +7,25 @@ public class Item {
   private String price;
   private String url;
   private String description;
-  private int wishlistNumber;
+  private String wishlistName;
   private String userEmail;
 
-  public Item(int itemID, String productName, String price, String url, String description, int wishlistNumber, String userEmail) {
+  public Item(int itemID, String productName, String price, String url, String description, String wishlistName, String userEmail) {
     this.itemID = itemID;
     this.productName = productName;
     this.price = price;
     this.url = url;
     this.description = description;
-    this.wishlistNumber = wishlistNumber;
+    this.wishlistName = wishlistName;
     this.userEmail = userEmail;
   }
 
-  public Item(String productName, String price, String url, String description, int wishlistNumber, String userEmail) {
+  public Item(String productName, String price, String url, String description, String wishlistName, String userEmail) {
     this.productName = productName;
     this.price = price;
     this.url = url;
     this.description = description;
-    this.wishlistNumber = wishlistNumber;
+    this.wishlistName = wishlistName;
     this.userEmail = userEmail;
   }
 
@@ -71,12 +71,12 @@ public class Item {
     this.description = description;
   }
 
-  public int getWishlistNumber() {
-    return wishlistNumber;
+  public String getWishlistName() {
+    return wishlistName;
   }
 
-  public void setWishlistNumber(int wishlistNumber) {
-    this.wishlistNumber = wishlistNumber;
+  public void setWishlistName(String wishlistName) {
+    this.wishlistName = wishlistName;
   }
 
   public String getUserEmail() {
@@ -95,7 +95,7 @@ public class Item {
         ", price='" + price + '\'' +
         ", url='" + url + '\'' +
         ", description='" + description + '\'' +
-        ", wishlistNumber=" + wishlistNumber +
+        ", wishlistName=" + wishlistName +
         ", userEmail='" + userEmail + '\'' +
         '}';
   }

@@ -24,7 +24,7 @@ public class ItemRepository {
             rs.getString(3),
             rs.getString(4),
             rs.getString(5),
-            rs.getInt(6),
+            rs.getString(6),
             rs.getString(7));
         itemsTemp.add(tmp);
       }
@@ -40,14 +40,14 @@ public class ItemRepository {
     public Item dbWrite(Item item) throws LoginSampleException {
       try {
         Connection con = DBManager.getConnection();
-        String SQL = "INSERT INTO items (item_name, item_price, item_url, item_description, wishlist_number, user_email)" +
+        String SQL = "INSERT INTO items (item_name, item_price, item_url, item_description, wishlist_name, user_email)" +
             " VALUES (?, ?, ?, ?, ?, ?)";
         PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
         ps.setString(1, item.getProductName());
         ps.setString(2, item.getPrice());
         ps.setString(3, item.getUrl());
         ps.setString(4, item.getDescription());
-        ps.setInt(5, item.getWishlistNumber());
+        ps.setString(5, item.getWishlistName());
         ps.setString(6, item.getUserEmail());
         ps.executeUpdate();
         ResultSet ids = ps.getGeneratedKeys();
