@@ -33,14 +33,18 @@ public class WishlistController {
 
 
     // Make "wishlist1" object and assign new values
-    Wishlist wishlist1 = new Wishlist(wishlistName, email);
 
-    System.out.println(wishlist1);
+    if (wishlistName.equals("")) {
+      throw new LoginSampleException("The wishlist must have a name");
+    }else {
+      Wishlist wishlist1 = new Wishlist(wishlistName, email);
+      System.out.println(wishlist1);
 
-    // Work + data is delegated to login service
-    wishlistService.createWishlist(wishlist1);
+      // Work + data is delegated to login service
+      wishlistService.createWishlist(wishlist1);
 
-    // Go to page
+      // Go to page
+    }
     return "redirect:/userpage";
   }
 

@@ -73,7 +73,7 @@ input{
 
 .button-wrapper-right{
     display: flex;
-    justify-content: right;
+    justify-content: left;
 }
 
 .footer {
