@@ -20,6 +20,18 @@ public class UserRepository {
     return resSet;
   }
 
+  public ResultSet getAllUsersFromDB() {
+    ResultSet resSet = null;
+    String select = "SELECT email FROM users";
+    try {
+      PreparedStatement ps = DBManager.getConnection().prepareStatement(select);
+      resSet = ps.executeQuery();
+    } catch (SQLException e) {
+      e.printStackTrace();
+    }
+    return resSet;
+  }
+
 
   public void dbWrite(User user) throws LoginSampleException {
     try {

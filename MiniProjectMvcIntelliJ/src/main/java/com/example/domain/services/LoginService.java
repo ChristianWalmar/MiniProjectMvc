@@ -29,6 +29,22 @@ public class LoginService {
     return false;
   }
 
+  public boolean checkIfUserExistsRegister(User userEntered) {
+    ResultSet rs = userRepository.getAllUsersFromDB();
+    try {
+      while (rs.next()) {
+        String userTempLogin = rs.getString(1);
+        if ((userTempLogin).equals(userEntered.getEmail())) {
+          return true;
+        }
+      }
+    } catch (SQLException e){
+      e.printStackTrace();
+    }
+    return false;
+  }
+
+
   public void createUser(User user) throws LoginSampleException {
     userRepository.dbWrite(user);
   }
