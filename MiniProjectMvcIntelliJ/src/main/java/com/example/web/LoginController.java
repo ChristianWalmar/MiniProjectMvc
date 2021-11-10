@@ -42,7 +42,6 @@ public class LoginController {
   }
 
 
-
   @PostMapping("/login")
   public String loginUser(HttpServletRequest request, Model model) throws LoginSampleException {
 
@@ -96,7 +95,7 @@ public class LoginController {
     Wishlist wishlist1 = new Wishlist();
     model.addAttribute("wishlist1", wishlist1);
 
-        return "userpage";
+    return "userpage";
   }
 
 
@@ -123,16 +122,17 @@ public class LoginController {
     // If passwords match, work + data is delegated to login service
     if (password1.equals(password2)) {
       User user = new User(email, password1, firstName, lastName, address, age, phoneNumber);
-      loginService.createUser(user);
-      request.setAttribute("user", user, WebRequest.SCOPE_SESSION);
-      model.addAttribute("user", user);
-
-      return "/index";
-
-
+      if (new LoginService().checkIfUserExistsRegister(user)) {
+        throw  new LoginSampleException("There was already a user with this email.");
+      } else {
+        loginService.createUser(user);
+        request.setAttribute("user", user, WebRequest.SCOPE_SESSION);
+        model.addAttribute("user", user);
+      }
     } else { // If passwords don't match, an exception is thrown
       throw new LoginSampleException("The two passwords did not match");
     }
+    return "/index";
   }
 
   @ExceptionHandler(LoginSampleException.class)
