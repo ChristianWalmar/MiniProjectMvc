@@ -11,11 +11,6 @@ public class ItemService {
 
   private ItemRepository itemRepository = new ItemRepository();
 
-
-  public ArrayList<Item> findAll(String email) {
-    return itemRepository.dbRead(email);
-  }
-
   public void createItem(Item item) throws LoginSampleException {
     new ItemRepository().dbWrite(item);
   }

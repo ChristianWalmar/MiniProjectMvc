@@ -20,7 +20,7 @@ public class ItemController {
   private ItemService itemService = new ItemService();
 
 
-  // method for "Add item" fields and button on "userpage"
+  // method for "Add item" fields and button on "showlist"
   @PostMapping("/addItem")
   public String saveItem (WebRequest request, Model model) throws LoginSampleException {
 
@@ -32,7 +32,7 @@ public class ItemController {
 
    /* String wishlistName = request.getParameter("wishlistName");*/
     String wishlistName = (String) request.getAttribute("wishlistName", WebRequest.SCOPE_SESSION);
- /*     String wishlistName = "List123";*/
+
     // Retrieve "email" String object from HTTP session
     String email = (String) request.getAttribute("email", WebRequest.SCOPE_SESSION);
 
@@ -48,8 +48,6 @@ public class ItemController {
     // Call arraylist and sort the items by wishlistName
     ArrayList<Item> itemsOneList = new WishlistService().showWishlist(wishlistName);
     request.setAttribute("itemsOneList", itemsOneList, WebRequest.SCOPE_SESSION);
-
-
 
     //  Assign model attribute to arraylist med  items
     model.addAttribute("itemsOneList", itemsOneList);
