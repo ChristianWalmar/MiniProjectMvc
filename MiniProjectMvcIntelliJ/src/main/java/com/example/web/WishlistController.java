@@ -3,7 +3,6 @@ package com.example.web;
 import com.example.domain.LoginSampleException;
 import com.example.domain.models.Item;
 import com.example.domain.models.Wishlist;
-import com.example.domain.services.ItemService;
 import com.example.domain.services.WishlistService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -76,8 +75,6 @@ public class WishlistController {
     /*wishlistService.showWishlist(wishlistName);*/
     return "showlist";
   }
-
-
 }
 
 

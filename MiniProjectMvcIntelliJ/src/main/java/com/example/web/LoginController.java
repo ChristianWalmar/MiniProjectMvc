@@ -84,16 +84,6 @@ public class LoginController {
 
     model.addAttribute("user1", user1);
 
-    // Call arraylist and sort the items by users email
-    ArrayList<Item> items = itemService.findAll(emailTemp); // search of item objects by email
-
-    //  Assign model attribute to arraylist med  items
-    model.addAttribute("items", items);
-
-    // Assign model attribute for "item1" object
-    Item item1 = new Item();
-    model.addAttribute("item1", item1);
-
     // Call arraylist and sort the wishlists by users email
     ArrayList<Wishlist> wishlists = wishlistService.findAll(emailTemp); // search of wishlist objects by email
 

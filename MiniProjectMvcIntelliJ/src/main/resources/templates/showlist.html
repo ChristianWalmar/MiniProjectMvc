@@ -16,32 +16,23 @@
 
 <p> Her you can create an item for your Wishlist</p>
 
-
 <form style="border: none" action="#" method="post" th:action="@{/addItem}" th:object="${item1}">
     <table>
         <thead>
         <tr>
-            <!--  <th> Item ID</th>-->
-            <!--<th> Wishlist name</th>-->
             <th> Product name</th>
             <th> Price</th>
             <th> URL</th>
             <th> Description</th>
-
-            <!-- <th> User email</th>-->
             <th> ACTION</th>
         </tr>
         </thead>
         <tbody>
         <tr>
-            <!-- <td> <input type="text" th:field="*{itemID}"/></td>-->
-            <!--     <td> <input type="text" th:field="*{wishlistName}"/></td>-->
             <td> <input type="text" th:field="*{productName}"/></td>
             <td> <input type="text" th:field="*{price}"/></td>
             <td> <input type="text" th:field="*{url}"/></td>
             <td> <input type="text" th:field="*{description}"/></td>
-
-            <!--  <td> <input type="text" th:field="*{userEmail}"/></td>-->
             <td> <div class="button-wrapper-right">
                 <button class="button1" onclick="location.href='/addItem'" type="submit">Add item</button>
             </div>
@@ -55,35 +46,25 @@
 <table>
     <thead>
     <tr>
-        <!--  <th> Item ID</th>-->
-      <!--  <th> Wishlist name</th>-->
         <th> Product name</th>
         <th> Price</th>
         <th> URL</th>
         <th> Description</th>
-        <!-- <th> User email</th>-->
         <th> ACTION</th>
     </tr>
     </thead>
     <tbody>
-    <!--<tr th:if="${itemsOneList == null}">-->
-    <tr th:each="item1 : ${itemsOneList}">
-     <!--   <td th:text="${item1.wishlistName}"></td>-->
-        <!--   <td th:text="${item1.productName}"></td>-->
+      <tr th:each="item1 : ${itemsOneList}">
         <td th:text="${item1.productName}"></td>
         <td th:text="${item1.price}"></td>
         <td th:text="${item1.url}"></td>
         <td th:text="${item1.description}"></td>
-
-        <!--<td th:text="${item1.userEmail}"></td>-->
         <td><a th:href="@{/deleteItem/{itemID}(itemID=${item1.itemID})}">
             <img src="/images/trashcan.png" alt="Trashcan">
         </a></td>
-
     </tr>
     </tbody>
 </table>
-
 
 </body>
 </html>

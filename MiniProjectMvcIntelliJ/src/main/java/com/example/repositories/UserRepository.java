@@ -56,7 +56,7 @@ public class UserRepository {
     }
   }
 
-  public User returnUser(String email) {
+  public User returnUserByEmail(String email) {
      User tmp = new User();
     try {
       Connection con = DBManager.getConnection();

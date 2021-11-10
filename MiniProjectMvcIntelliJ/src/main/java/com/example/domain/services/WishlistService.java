@@ -15,7 +15,7 @@ public class WishlistService {
     wishlistRepository.dbWrite(wishlist);
   }
 
-  // skal evt. fjernes senere?
+
   public ArrayList<Wishlist> findAll(String email) {
     return wishlistRepository.dbRead(email);
   }
