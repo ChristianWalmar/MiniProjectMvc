@@ -103,45 +103,6 @@
 </table>
 
 
-
-
-
-
-<p> Her can you see all the items in all Wishlists of current User :</p>
-
-<table>
-    <thead>
-    <tr>
-      <!--  <th> Item ID</th>-->
-        <th> Wishlist name</th>
-        <th> Product name</th>
-        <th> Price</th>
-        <th> URL</th>
-        <th> Description</th>
-
-       <!-- <th> User email</th>-->
-        <th> ACTION</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr th:each="item1 : ${items}">
-        <td th:text="${item1.wishlistName}"></td>
-     <!--   <td th:text="${item1.productName}"></td>-->
-        <td th:text="${item1.productName}"></td>
-        <td th:text="${item1.price}"></td>
-        <td th:text="${item1.url}"></td>
-        <td th:text="${item1.description}"></td>
-
-        <!--<td th:text="${item1.userEmail}"></td>-->
-        <td><a th:href="@{/deleteItem/{itemID}(itemID=${item1.itemID})}">
-            <img src="/images/trashcan.png" alt="Trashcan">
-        </a></td>
-
-    </tr>
-    </tbody>
-</table>
-
-
 <p>Is session empty now?</p>
 <p th:text="${session.isEmpty()}" th:unless="${session == null}">[...]</p>
 </body>

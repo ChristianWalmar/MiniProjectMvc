@@ -27,12 +27,15 @@ public class WishlistController {
     //Retrieve values from HTML form via WebRequest
 
     String wishlistName = request.getParameter("wishlistName");
+
     // Retrieve "email" String object from HTTP session
     String email = (String) request.getAttribute("email", WebRequest.SCOPE_SESSION);
 
 
     // Make "wishlist1" object and assign new values
     Wishlist wishlist1 = new Wishlist(wishlistName, email);
+
+    System.out.println(wishlist1);
 
     // Work + data is delegated to login service
     wishlistService.createWishlist(wishlist1);
@@ -50,10 +53,12 @@ public class WishlistController {
 
 
   @GetMapping("/showWishlist/{wishlistName}") // GET???
-  public String showWishlist(Model model, @PathVariable(value = "wishlistName") String wishlistName) {
+  public String showWishlist(WebRequest request, Model model, @PathVariable(value = "wishlistName") String wishlistName) {
 
     // Call arraylist and sort the items by wishlistName
     ArrayList<Item> itemsOneList = wishlistService.showWishlist(wishlistName);
+
+    request.setAttribute("itemsOneList", itemsOneList, WebRequest.SCOPE_SESSION);
 
     //  Assign model attribute to arraylist med  items
     model.addAttribute("itemsOneList", itemsOneList);
@@ -61,6 +66,8 @@ public class WishlistController {
     // Assign model attribute for "item1" object
     Item item1 = new Item();
     model.addAttribute("item1", item1);  // ??????
+
+    request.setAttribute("wishlistName", wishlistName, WebRequest.SCOPE_SESSION);
 
     /*wishlistService.showWishlist(wishlistName);*/
     return "showlist";
