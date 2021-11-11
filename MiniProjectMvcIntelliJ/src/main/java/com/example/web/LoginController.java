@@ -82,6 +82,7 @@ public class LoginController {
 
     User user1 = loginService.findUserByEmail(emailTemp);
 
+
     model.addAttribute("user1", user1);
 
     // Call arraylist and sort the wishlists by users email
