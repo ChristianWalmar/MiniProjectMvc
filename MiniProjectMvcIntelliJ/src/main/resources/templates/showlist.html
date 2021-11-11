@@ -14,6 +14,31 @@
     <button class="button1" onclick="location.href='/userpage'" type="button">Back to User page</button>
 </div>
 
+<!--<div class="button-wrapper-right">
+    <button class="button1" onclick="location.href='/mailto:vitaliy_serdyukov@hotmail.com'" type="button">Send list to e-mail</button>
+</div>-->
+
+
+<!--<form style="border: none" action="mailto:vitaliy_serdyukov@hotmail.com" method="GET">
+    <input name="subject" type="text" value="This is a link to my Wishlist"/>
+    <textarea name="body"></textarea>
+    <input class="button1" type="submit" value="Send" />
+</form>-->
+
+<a th:href="@{/showWishlistGuest/{wishlistName}(wishlistName=${wishlist1.wishlistName})}">
+    <img src="/images/eye2.png" alt="Eye">
+</a>
+
+
+
+<!--<td><a th:href="@{/showWishlist/{wishlistName}(wishlistName=${wishlist1.wishlistName})}">-->
+
+<!--</a></td>-->
+<!--<button onclick="location.href='mailto:em@i.l';">send mail</button>
+<button><a href="mailto:..."></a></button>-->
+
+
+
 <p> Her you can create an item for your Wishlist</p>
 
 <form style="border: none" action="#" method="post" th:action="@{/addItem}" th:object="${item1}">
@@ -41,7 +66,7 @@
     </table>
 </form>
 
-<p>Show items in one Wishlist:<span th:text="*{wishlistName}"/></p>
+<p>Items in Wishlist: <b><span th:text="*{wishlistName}"/></b></p>
 
 <table>
     <thead>
@@ -55,7 +80,7 @@
     </thead>
     <tbody>
       <tr th:each="item1 : ${itemsOneList}">
-        <td th:text="${item1.productName}"></td>
+        <td th:text="*{item1.productName}"></td>
         <td th:text="${item1.price}"></td>
         <td th:text="${item1.url}"></td>
         <td th:text="${item1.description}"></td>

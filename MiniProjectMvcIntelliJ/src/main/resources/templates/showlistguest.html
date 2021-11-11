@@ -1,10 +1,40 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="/css/styling.css" type="text/css">
+    <title>Show list guest</title>
 </head>
 <body>
-$END$
+
+
+<p>Url of this page <span th:text="*{url}"/></p>
+
+<p>Hi! This is  Wishlist from the user of our service with
+    e-mail address: <b><span th:text="*{wishlistOwnerEmail}"/></b></p>  <!--doesn't work?-->
+
+<p>Items in Wishlist: <b><span th:text="*{wishlistName}"/></b></p>
+
+<table>
+    <thead>
+    <tr>
+        <th> Product name</th>
+        <th> Price</th>
+        <th> URL</th>
+        <th> Description</th>
+        </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item1 : ${itemsOneList}">
+        <td th:text="${item1.productName}"></td>
+        <td th:text="${item1.price}"></td>
+        <td th:text="${item1.url}"></td>
+        <td th:text="${item1.description}"></td>
+    </tr>
+    </tbody>
+</table>
+
 </body>
 </html>
