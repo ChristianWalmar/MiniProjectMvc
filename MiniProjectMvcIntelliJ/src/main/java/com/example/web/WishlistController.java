@@ -38,7 +38,9 @@ public class WishlistController {
     // Make "wishlist1" object and assign new values
 
     if (wishlistName.equals("")) {
-      throw new LoginSampleException("The wishlist must have a name");
+      /*throw new LoginSampleException("The wishlist must have a name");*/
+      return "redirect:/userpage";
+      
     }else {
       Wishlist wishlist1 = new Wishlist(wishlistName, email);
       System.out.println(wishlist1);
@@ -72,6 +74,8 @@ public class WishlistController {
 
     // Assign model attribute for "item1" object
     Item item1 = new Item();
+
+    request.setAttribute("item1", item1, WebRequest.SCOPE_SESSION); // ?????
     model.addAttribute("item1", item1);
 
     Wishlist wishlist1 = new Wishlist();

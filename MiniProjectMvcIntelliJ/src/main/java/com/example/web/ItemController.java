@@ -67,9 +67,16 @@ public class ItemController {
   }
 
   @GetMapping("/deleteItem/{itemID}") // GET???
-  public String deleteItem (@PathVariable(value = "itemID") int itemID) {
+  public String deleteItem (WebRequest request,Model model, @PathVariable(value = "itemID") int itemID) {
+
     itemService.deleteItem(itemID);
-    return "redirect:/showlist"; // navigate to same page???
+    String wishlistName = (String) request.getAttribute("wishlistName", WebRequest.SCOPE_SESSION);
+    ArrayList<Item> itemsOneList = new WishlistService().showWishlist(wishlistName);
+    Item item1 = (Item) request.getAttribute("item1", WebRequest.SCOPE_SESSION);
+    model.addAttribute("item1", item1);  // ?????
+    /*ArrayList itemsOneList = (ArrayList) request.getAttribute("itemsOneList", WebRequest.SCOPE_SESSION);*/
+    model.addAttribute("itemsOneList", itemsOneList);  // ?????
+    return "showlist"; // navigate to same page???
   }
 
 }
