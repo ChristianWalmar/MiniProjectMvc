@@ -40,7 +40,7 @@ public class WishlistController {
     if (wishlistName.equals("")) {
       /*throw new LoginSampleException("The wishlist must have a name");*/
       return "redirect:/userpage";
-      
+
     }else {
       Wishlist wishlist1 = new Wishlist(wishlistName, email);
       System.out.println(wishlist1);
