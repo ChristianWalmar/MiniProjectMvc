@@ -82,7 +82,7 @@ public class LoginController {
 
     User user1 = loginService.findUserByEmail(emailTemp);
 
-
+    session.setAttribute("user1", user1); //?????
     model.addAttribute("user1", user1);
 
     // Call arraylist and sort the wishlists by users email
@@ -135,6 +135,15 @@ public class LoginController {
     }
     return "/index";
   }
+
+  @GetMapping("/userinfo")
+  public String userinfo(Model model, HttpServletRequest request) {
+    HttpSession session = request.getSession();
+    User user1 = (User) session.getAttribute("user1");
+    model.addAttribute("user1", user1);
+    return "userinfo";
+  }
+
 
   @ExceptionHandler(LoginSampleException.class)
   public String handleError(Model model, Exception exception) {

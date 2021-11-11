@@ -17,6 +17,14 @@
 
 <p>Items in Wishlist: <b><span th:text="*{wishlistName}"/></b></p>
 
+
+<form style="border: none" action="mailto:" method="GET">
+    <!--<input name="email" type="email"/>-->
+    <input name="subject" type="text" th:value="*{url}"/>
+    <textarea name="body"></textarea>
+    <input class="button1" type="submit" value="Send" />
+</form>
+
 <table>
     <thead>
     <tr>

@@ -69,7 +69,13 @@ public class ItemController {
   @GetMapping("/deleteItem/{itemID}") // GET???
   public String deleteItem (@PathVariable(value = "itemID") int itemID) {
     itemService.deleteItem(itemID);
-    return "redirect:/userpage"; // navigate to same page???
+    return "redirect:/showlist"; // navigate to same page???
   }
 
 }
+
+
+ /* Item item1 = (Item) request.getAttribute("item1", WebRequest.SCOPE_SESSION);
+    model.addAttribute("item1", item1);  // ?????
+        ArrayList itemsOneList = (ArrayList) request.getAttribute("itemsOneList", WebRequest.SCOPE_SESSION);
+        model.addAttribute("itemsOneList", itemsOneList);  // ?????*/
