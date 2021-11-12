@@ -1,0 +1,141 @@
+body {
+    background-color: beige;
+    font-family: "Courier New";
+}
+
+h1 {
+    text-align: center;
+}
+
+
+p {
+    margin-top: 30px;
+    text-align: center;
+}
+
+li a {
+    text-decoration: none;
+}
+
+li {
+    margin-top: 20px;
+    margin-bottom: 15px;
+}
+
+form {
+    border: 3px solid black;
+    border-radius: 6px;
+    padding: 5px 0 5px 5px;
+    margin-bottom: 30px;
+    width: 300px;
+}
+
+form.add-item {
+
+    padding: 5px 0 5px 5px;
+    margin-bottom: 30px;
+    width: 300px;
+}
+
+input {
+    margin-top: 5px;
+    margin-bottom: 5px;
+
+}
+
+.button1 {
+    width: 80px;
+    color: #fff;
+    text-decoration: none;
+    user-select: none;
+    background: rgb(56, 129, 212);
+    padding: .7em 1.5em;
+    outline: none;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+
+.button1:hover {
+    background: rgb(12, 27, 84);
+}
+
+.button1:active {
+    background: rgb(3, 18, 65);
+}
+
+
+.button-wrapper-left {
+    display: flex;
+    justify-content: left;
+}
+
+.button-wrapper-right {
+    display: flex;
+    justify-content: left;
+}
+
+
+label {
+    display: block;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 100%;
+    border: 1px solid #ddd;
+}
+
+table.user-info {
+
+    border-collapse: collapse;
+    border-spacing: 0;
+    width: 150px;
+    border: 1px solid #ddd;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+
+tr:nth-child(even) {
+    background-color: #f2f2f2
+}
+
+.content-wrapper-left {
+    display: flex;
+    justify-content: left;
+    width: 50%;
+}
+
+
+.content-wrapper-right {
+    display: flex;
+    justify-content: right;
+    width: 50%;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    font-size: 20px;
+    text-align: center;
+}
+
+.flex-item-left {
+    padding: 10px;
+    flex: 50%;
+}
+
+.flex-item-right {
+    padding: 10px;
+    flex: 50%;
+}
