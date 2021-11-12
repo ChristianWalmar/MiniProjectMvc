@@ -5,6 +5,9 @@ import com.example.domain.models.Item;
 import com.example.domain.models.Wishlist;
 import com.example.repositories.WishlistRepository;
 
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 
 public class WishlistService {
@@ -28,4 +31,13 @@ public class WishlistService {
   public ArrayList<Item>showWishlist(String wishlistName){
     return wishlistRepository.dbReadOneList(wishlistName);
   }
+
+
+  public String makeNewLink (String urlUser) {
+
+    String urlGuest = urlUser.replaceAll("showWishlist", "showWishlistGuest");
+
+    return urlGuest;
+  }
+
 }

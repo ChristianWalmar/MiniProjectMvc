@@ -26,14 +26,11 @@
 </a>-->
 
 
-
-<!--<td><a th:href="@{/showWishlist/{wishlistName}(wishlistName=${wishlist1.wishlistName})}">-->
-
-<!--</a></td>-->
-<!--<button onclick="location.href='mailto:em@i.l';">send mail</button>
-<button><a href="mailto:..."></a></button>-->
-
-
+<form style="border: none" action="mailto:" method="GET">
+    <input name="subject" type="text" value="Hi! Here is my Wishlist"/>
+    <input name="body" type="text" th:value="*{urlGuest}"/>
+    <button type="submit"><img src="/images/sentoicon.png" alt="Send mail"></button>
+</form>
 
 <p> Her you can create an item for your Wishlist</p>
 

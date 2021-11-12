@@ -62,7 +62,17 @@ public class WishlistController {
 
 
   @GetMapping("/showWishlist/{wishlistName}") // GET???
-  public String showWishlist(WebRequest request, Model model, @PathVariable(value = "wishlistName") String wishlistName) {
+  public String showWishlist(HttpServletRequest request2, WebRequest request, Model model, @PathVariable(value = "wishlistName") String wishlistName) {
+
+    String url = request2.getRequestURL().toString();
+    System.out.println(url);
+    String urlGuest =  wishlistService.makeNewLink(url);
+    request.setAttribute("urlGuest", urlGuest, WebRequest.SCOPE_SESSION);
+    System.out.println(urlGuest);
+
+    //  Assign model attribute to arraylist med  items
+    model.addAttribute("urlGuest", urlGuest);
+
 
     // Call arraylist and sort the items by wishlistName
     ArrayList<Item> itemsOneList = wishlistService.showWishlist(wishlistName);
@@ -88,10 +98,7 @@ public class WishlistController {
   }
 
   @GetMapping("/showWishlistGuest/{wishlistName}")
-  public String showWishlistGuest(HttpServletRequest request2, WebRequest request, Model model, @PathVariable(value = "wishlistName") String wishlistName) {
-
-    String url = request2.getRequestURL().toString();
-    model.addAttribute("url", url);
+  public String showWishlistGuest(WebRequest request, Model model, @PathVariable(value = "wishlistName") String wishlistName) {
 
     // Call arraylist and sort the items by wishlistName
     ArrayList<Item> itemsOneList = wishlistService.showWishlist(wishlistName);
@@ -110,16 +117,6 @@ public class WishlistController {
     Wishlist wishlist1 = new Wishlist();
     model.addAttribute("wishlist1", wishlist1);
 
-
-
     return "showlistguest";
   }
-
 }
-
-/* HttpSession session = request2.getSession();
-    User user1 = (User) session.getAttribute("user1");
-
-    model.addAttribute(" user1", user1);*/
-
-

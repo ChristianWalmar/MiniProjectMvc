@@ -32,11 +32,4 @@ public class Wishlist {
     this.wishlistOwnerEmail = wishlistOwnerEmail;
   }
 
-  @Override
-  public String toString() {
-    return "Wishlist{" +
-        "wishlistName='" + wishlistName + '\'' +
-        ", wishlistOwnerEmail='" + wishlistOwnerEmail + '\'' +
-        '}';
-  }
 }

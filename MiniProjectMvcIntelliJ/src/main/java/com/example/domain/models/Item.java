@@ -87,16 +87,4 @@ public class Item {
     this.userEmail = userEmail;
   }
 
-  @Override
-  public String toString() {
-    return "Item{" +
-        "itemID=" + itemID +
-        ", productName='" + productName + '\'' +
-        ", price='" + price + '\'' +
-        ", url='" + url + '\'' +
-        ", description='" + description + '\'' +
-        ", wishlistName=" + wishlistName +
-        ", userEmail='" + userEmail + '\'' +
-        '}';
-  }
 }
