@@ -18,38 +18,38 @@ import java.util.ArrayList;
 @Controller
 public class WishlistController {
 
-    private WishlistService wishlistService = new WishlistService();
+  private WishlistService wishlistService = new WishlistService();
 
 
-    // method for "Add wishlist" fields and button on "userpage"
-    @PostMapping("/addWishlist")
-    public String saveWishlist(WebRequest request, Model model) throws LoginSampleException {
+  // method for "Add wishlist" fields and button on "userpage"
+  @PostMapping("/addWishlist")
+  public String saveWishlist(WebRequest request, Model model) throws LoginSampleException {
 
-        //Retrieve values from HTML form via WebRequest
+    //Retrieve values from HTML form via WebRequest
 
-        String wishlistName = request.getParameter("wishlistName");
+    String wishlistName = request.getParameter("wishlistName");
 
-        // Retrieve "email" String object from HTTP session
-        String email = (String) request.getAttribute("email", WebRequest.SCOPE_SESSION);
+    // Retrieve "email" String object from HTTP session
+    String email = (String) request.getAttribute("email", WebRequest.SCOPE_SESSION);
 
 
-        // Make "wishlist1" object and assign new values
+    // Make "wishlist1" object and assign new values
 
-        if (wishlistName.equals("")) {
-            /*throw new LoginSampleException("The wishlist must have a name");*/
-            return "redirect:/userpage";
+    if (wishlistName.equals("")) {
+      /*throw new LoginSampleException("The wishlist must have a name");*/
+      return "redirect:/userpage";
 
-        } else {
-            Wishlist wishlist1 = new Wishlist(wishlistName, email);
-            System.out.println(wishlist1);
+    } else {
+      Wishlist wishlist1 = new Wishlist(wishlistName, email);
+      System.out.println(wishlist1);
 
-            // Work + data is delegated to login service
-            wishlistService.createWishlist(wishlist1);
+      // Work + data is delegated to login service
+      wishlistService.createWishlist(wishlist1);
 
-            // Go to page
-        }
-        return "redirect:/userpage";
+      // Go to page
     }
+    return "redirect:/userpage";
+  }
 
 
   @GetMapping("/deleteWishlist/{wishlistName}") // GET???
@@ -64,7 +64,7 @@ public class WishlistController {
 
     String url = request2.getRequestURL().toString();
     System.out.println(url);
-    String urlGuest =  wishlistService.makeNewLink(url);
+    String urlGuest = wishlistService.makeNewLink(url);
     request.setAttribute("urlGuest", urlGuest, WebRequest.SCOPE_SESSION);
     System.out.println(urlGuest);
 
@@ -117,3 +117,4 @@ public class WishlistController {
 
     return "showlistguest";
   }
+}
