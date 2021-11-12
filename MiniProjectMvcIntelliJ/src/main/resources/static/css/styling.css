@@ -1,19 +1,19 @@
-body{
+body {
     background-color: beige;
     font-family: "Courier New";
 }
 
-h1{
+h1 {
     text-align: center;
 }
 
 
-p{
-    margin-top:30px;
+p {
+    margin-top: 30px;
     text-align: center;
 }
 
-li a{
+li a {
     text-decoration: none;
 }
 
@@ -37,7 +37,7 @@ form.add-item {
     width: 300px;
 }
 
-input{
+input {
     margin-top: 5px;
     margin-bottom: 5px;
 
@@ -57,25 +57,27 @@ input{
 }
 
 
-.button1:hover { background: rgb(12, 27, 84); }
-.button1:active { background: rgb(3, 18, 65); }
+.button1:hover {
+    background: rgb(12, 27, 84);
+}
+
+.button1:active {
+    background: rgb(3, 18, 65);
+}
 
 
-
-
-.button-wrapper-left{
+.button-wrapper-left {
     display: flex;
     justify-content: left;
 }
 
-.button-wrapper-right{
+.button-wrapper-right {
     display: flex;
     justify-content: left;
 }
 
 
-
-label{
+label {
     display: block;
 }
 
@@ -100,7 +102,9 @@ th, td {
 }
 
 
-tr:nth-child(even){background-color: #f2f2f2}
+tr:nth-child(even) {
+    background-color: #f2f2f2
+}
 
 .content-wrapper-left {
     display: flex;

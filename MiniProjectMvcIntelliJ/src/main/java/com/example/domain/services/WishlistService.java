@@ -9,23 +9,23 @@ import java.util.ArrayList;
 
 public class WishlistService {
 
-  private WishlistRepository wishlistRepository = new WishlistRepository();
+    private WishlistRepository wishlistRepository = new WishlistRepository();
 
-  public void createWishlist(Wishlist wishlist) throws LoginSampleException {
-    wishlistRepository.dbWrite(wishlist);
-  }
-
-
-  public ArrayList<Wishlist> findAll(String email) {
-    return wishlistRepository.dbRead(email);
-  }
+    public void createWishlist(Wishlist wishlist) throws LoginSampleException {
+        wishlistRepository.dbWrite(wishlist);
+    }
 
 
-  public void deleteWishlist(String wishlistName){
-    wishlistRepository.deleteWishlistFromDB(wishlistName);
-  }
+    public ArrayList<Wishlist> findAll(String email) {
+        return wishlistRepository.dbRead(email);
+    }
 
-  public ArrayList<Item>showWishlist(String wishlistName){
-    return wishlistRepository.dbReadOneList(wishlistName);
-  }
+
+    public void deleteWishlist(String wishlistName) {
+        wishlistRepository.deleteWishlistFromDB(wishlistName);
+    }
+
+    public ArrayList<Item> showWishlist(String wishlistName) {
+        return wishlistRepository.dbReadOneList(wishlistName);
+    }
 }

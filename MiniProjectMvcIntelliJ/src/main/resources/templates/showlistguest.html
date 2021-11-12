@@ -12,7 +12,7 @@
 
 <p>Url of this page <span th:text="*{url}"/></p>
 
-<p>Hi! This is  Wishlist from the user of our service with
+<p>Hi! This is Wishlist from the user of our service with
     e-mail address: <b><span th:text="*{wishlistOwnerEmail}"/></b></p>  <!--doesn't work?-->
 
 <p>Items in Wishlist: <b><span th:text="*{wishlistName}"/></b></p>
@@ -26,7 +26,7 @@
     <!--<input name="email" type="email"/>-->
     <input name="subject" type="text" th:value="*{url}"/>
     <textarea name="body"></textarea>
-   <!-- <input class="button1" type="submit" value="Send" />-->
+    <!-- <input class="button1" type="submit" value="Send" />-->
     <button type="submit"><img src="/images/sentoicon.png" alt="Send mail"></button>
 </form>
 
@@ -37,7 +37,7 @@
         <th> Price</th>
         <th> URL</th>
         <th> Description</th>
-        </tr>
+    </tr>
     </thead>
     <tbody>
     <tr th:each="item1 : ${itemsOneList}">
