@@ -2,7 +2,6 @@ package com.example.web;
 
 import com.example.domain.LoginSampleException;
 import com.example.domain.models.Item;
-import com.example.domain.models.User;
 import com.example.domain.models.Wishlist;
 import com.example.domain.services.WishlistService;
 import org.springframework.stereotype.Controller;
@@ -13,45 +12,44 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
 
 @Controller
 public class WishlistController {
 
-  private WishlistService wishlistService = new WishlistService();
+    private WishlistService wishlistService = new WishlistService();
 
 
-  // method for "Add wishlist" fields and button on "userpage"
-  @PostMapping("/addWishlist")
-  public String saveWishlist(WebRequest request, Model model) throws LoginSampleException {
+    // method for "Add wishlist" fields and button on "userpage"
+    @PostMapping("/addWishlist")
+    public String saveWishlist(WebRequest request, Model model) throws LoginSampleException {
 
-    //Retrieve values from HTML form via WebRequest
+        //Retrieve values from HTML form via WebRequest
 
-    String wishlistName = request.getParameter("wishlistName");
+        String wishlistName = request.getParameter("wishlistName");
 
-    // Retrieve "email" String object from HTTP session
-    String email = (String) request.getAttribute("email", WebRequest.SCOPE_SESSION);
+        // Retrieve "email" String object from HTTP session
+        String email = (String) request.getAttribute("email", WebRequest.SCOPE_SESSION);
 
 
-    // Make "wishlist1" object and assign new values
+        // Make "wishlist1" object and assign new values
 
-    if (wishlistName.equals("")) {
-      /*throw new LoginSampleException("The wishlist must have a name");*/
-      return "redirect:/userpage";
+        if (wishlistName.equals("")) {
+            /*throw new LoginSampleException("The wishlist must have a name");*/
+            return "redirect:/userpage";
 
-    }else {
-      Wishlist wishlist1 = new Wishlist(wishlistName, email);
-      System.out.println(wishlist1);
+        } else {
+            Wishlist wishlist1 = new Wishlist(wishlistName, email);
+            System.out.println(wishlist1);
 
-      // Work + data is delegated to login service
-      wishlistService.createWishlist(wishlist1);
+            // Work + data is delegated to login service
+            wishlistService.createWishlist(wishlist1);
 
-      // Go to page
+            // Go to page
+        }
+        return "redirect:/userpage";
     }
-    return "redirect:/userpage";
-  }
 
 
   @GetMapping("/deleteWishlist/{wishlistName}") // GET???
@@ -119,4 +117,3 @@ public class WishlistController {
 
     return "showlistguest";
   }
-}
