@@ -26,7 +26,7 @@ public class UserRepository {
         try {
             PreparedStatement ps = DBManager.getConnection().prepareStatement(select);
             resSet = ps.executeQuery();
-        } catch (SQLException e) {
+        } catch (SQLException e) {   // catches an exception, if we make user number 1
             e.printStackTrace();
         }
         return resSet;
@@ -38,7 +38,7 @@ public class UserRepository {
             Connection con = DBManager.getConnection();
             String SQL = "INSERT INTO users (email, password, first_name, last_name, address, age, phone_number)" +
                     " VALUES (?, ?, ?, ?, ?, ?, ?)";
-            PreparedStatement ps = con.prepareStatement(SQL/*, Statement.RETURN_GENERATED_KEYS*/);
+            PreparedStatement ps = con.prepareStatement(SQL, Statement.RETURN_GENERATED_KEYS);
             ps.setString(1, user.getEmail());
             ps.setString(2, user.getPassword());
             ps.setString(3, user.getFirstName());

@@ -32,8 +32,8 @@ public class LoginService {
         ResultSet rs = userRepository.getAllUsersFromDB();
         try {
             while (rs.next()) {
-                String userTempLogin = rs.getString(1);
-                if ((userTempLogin).equals(userEntered.getEmail())) {
+                String userTempEmail = rs.getString(1);
+                if ((userTempEmail).equals(userEntered.getEmail())) {
                     return true;
                 }
             }
@@ -42,6 +42,7 @@ public class LoginService {
         }
         return false;
     }
+
 
 
     public void createUser(User user) throws LoginSampleException {
