@@ -7,37 +7,83 @@
     <title>Signup</title>
 </head>
 <body>
-Welcome to the sign up page!
+<h2>You are on sign up page now</h2>
+<p style="margin-bottom: 25px">Please, type your data in and press "Sign up" to create an account</p>
 
-<form name="register" action="/register" method="POST">
-    Email:<br>
-    <input type="text" name="email">
-    <br>
-    Password:<br>
-    <input type="password" name="password1">
-    <br>
-    Retype Password:<br>
-    <input type="password" name="password2">
-    <br>
-    Firstname:<br>
-    <input type="text" name="firstname">
-    <br>
-    Lastname:<br>
-    <input type="text" name="lastname">
-    <br>
-    Address:<br>
-    <input type="text" name="address">
-    <br>
-    Age:<br>
-    <input type="number" name="age">
-    <br>
-    Phone number:<br>
-    <input type="text" name="phonenumber">
-    <br>
-    <div class="button-wrapper-left">
-        <button class="button1" type="submit">Sign in</button>
+<div class="element-middle">
+<form style="width: 375px" name="register" action="/register" method="POST">
+
+    <div class="main">
+   <div class="field">
+        <label for="email">E-mail:</label>
+        <input type="email" id="email" name="email"/>
+    </div>
+    <div class="field">
+        <label for="password1">Password:</label>
+        <input type="password" id="password1" name="password1"/>
+    </div>
+    <div class="field">
+        <label for="password2">Retype Password:</label>
+        <input type="password" id="password2" name="password2"/>
+    </div>
+    <div class="field">
+        <label for="firstname">Firstname:</label>
+        <input type="text" id="firstname" name="firstname"/>
+    </div>
+    <div class="field">
+        <label for="lastname">Lastname:</label>
+        <input type="text" id="lastname" name="lastname"/>
+    </div>
+    <div class="field">
+        <label for="address">Address:</label>
+        <input type="text" id="address" name="address"/>
+    </div>
+    <div class="field">
+        <label for="age">Age:</label>
+        <input type="text" id="age" name="age"/>
+    </div>
+    <div class="field">
+        <label for="phonenumber"> Phone number:</label>
+        <input type="text" id="phonenumber" name="phonenumber"/>
+    </div>
+        <div class="flex-container" style="padding-left: 10px">
+     <div class="flex-item-left">
+        <button class="button1" type="submit">Sign up</button>
+    </div>
+      <div class="flex-item-right">
+        <button class="button-back-to-login" onclick="location.href='/'" type="button">Back to login page</button>
+      </div>
+        </div>
     </div>
 </form>
+</div>
 
 </body>
 </html>
+
+
+<!--
+Email:<br>
+<input type="text" name="email">
+<br>
+Password:<br>
+<input type="password" name="password1">
+<br>
+Retype Password:<br>
+<input type="password" name="password2">
+<br>
+Firstname:<br>
+<input type="text" name="firstname">
+<br>
+Lastname:<br>
+<input type="text" name="lastname">
+<br>
+Address:<br>
+<input type="text" name="address">
+<br>
+Age:<br>
+<input type="number" name="age">
+<br>
+Phone number:<br>
+<input type="text" name="phonenumber">
+<br>-->
