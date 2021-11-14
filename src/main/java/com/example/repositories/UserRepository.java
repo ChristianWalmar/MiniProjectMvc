@@ -44,7 +44,7 @@ public class UserRepository {
             ps.setString(3, user.getFirstName());
             ps.setString(4, user.getLastName());
             ps.setString(5, user.getAddress());
-            ps.setInt(6, user.getAge());
+            ps.setString(6, user.getAge());
             ps.setString(7, user.getPhoneNumber());
             ps.executeUpdate();
             ResultSet ids = ps.getGeneratedKeys();
@@ -69,7 +69,7 @@ public class UserRepository {
                 tmp.setPassword(rs.getString(3));
                 tmp.setFirstName(rs.getString(4));
                 tmp.setLastName(rs.getString(5));
-                tmp.setAge(rs.getInt(6));
+                tmp.setAge(rs.getString(6));
                 tmp.setAddress(rs.getString(7));
                 tmp.setPhoneNumber(rs.getString(8));
             }
