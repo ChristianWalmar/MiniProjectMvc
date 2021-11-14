@@ -8,23 +8,23 @@
 </head>
 <body>
 <h2>You are on sign up page now</h2>
-<p style="margin-bottom: 25px">Please, type your data in and press "Sign up" to create an account</p>
+<p style="margin-bottom: 25px"><b>Please, type your data in and press "Sign up" to create an account</b></p>
 
 <div class="element-middle">
-<form style="width: 375px" name="register" action="/register" method="POST">
+<form style="width: 400px" name="register" action="/register" method="POST">
 
-    <div class="main">
+    <div class="main" style="margin-left: 32px;margin-bottom: 0px">
    <div class="field">
-        <label for="email">E-mail:</label>
-        <input type="email" id="email" name="email"/>
+        <label for="email">E-mail:*</label>
+        <input type="email" id="email" name="email" placeholder="someone@mail.com" required/>
     </div>
     <div class="field">
-        <label for="password1">Password:</label>
-        <input type="password" id="password1" name="password1"/>
+        <label for="password1">Password:*</label>
+        <input type="password" id="password1" name="password1" placeholder="*********" required/>
     </div>
     <div class="field">
-        <label for="password2">Retype Password:</label>
-        <input type="password" id="password2" name="password2"/>
+        <label for="password2">Retype Password:*</label>
+        <input type="password" id="password2" name="password2" placeholder="*********" required/>
     </div>
     <div class="field">
         <label for="firstname">Firstname:</label>
@@ -46,13 +46,16 @@
         <label for="phonenumber"> Phone number:</label>
         <input type="text" id="phonenumber" name="phonenumber"/>
     </div>
-        <div class="flex-container" style="padding-left: 10px">
+        <div class="flex-container">
      <div class="flex-item-left">
         <button class="button1" type="submit">Sign up</button>
     </div>
       <div class="flex-item-right">
-        <button class="button-back-to-login" onclick="location.href='/'" type="button">Back to login page</button>
+        <button class="button1" style="width: 120px" onclick="location.href='/'" type="button">Back to login page</button>
       </div>
+        </div>
+        <div class="element-middle">
+            <p style="font-size:14px">Fields with * are mandatory</p>
         </div>
     </div>
 </form>

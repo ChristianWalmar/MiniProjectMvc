@@ -16,29 +16,25 @@ import org.springframework.web.context.request.WebRequest;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
-import java.util.Objects;
 
 
 @Controller
 public class LoginController {
 
 
-    private LoginService loginService = new LoginService();
-    private ItemService itemService = new ItemService();
-    private WishlistService wishlistService = new WishlistService();
+    private final LoginService loginService = new LoginService();
+    private final ItemService itemService = new ItemService();
+    private final WishlistService wishlistService = new WishlistService();
 
     // main page "index"
     @GetMapping("/")
-    public String index() {
-        return "index";
+    public String index() { return "index";
     }
 
 
     // "signup" page
     @GetMapping("/signup")
-    public String signup() {
-        return "signup";
-    }
+    public String signup() {return "signup";}
 
 
     @PostMapping("/login")
@@ -51,17 +47,13 @@ public class LoginController {
     // delegate work + data to login service
     User user = new User(email, password);
     boolean isExists = loginService.checkIfUserExists(user);
-        if (Objects.equals(email, "") || Objects.equals(password, "")) {
-            throw new LoginSampleException("You have to fill in all the fields...");
+        if (isExists) {
+             // Set email in session
+             session.setAttribute("email", email);
+              // Go to next page after login
+              return "redirect:/userpage";
         } else {
-                if (isExists) {
-                // Set email in session
-                session.setAttribute("email", email);
-                // Go to next page after login
-                return "redirect:/userpage";
-                } else {
-                throw new LoginSampleException("User is not exists, please try again");
-                }
+            throw new LoginSampleException("User is not exists, please try again");
         }
     }
 
@@ -110,9 +102,7 @@ public class LoginController {
     String age = request.getParameter("age");
     String phoneNumber = request.getParameter("phonenumber");
 
-    if (Objects.equals(email, "") || Objects.equals(password1, "") | Objects.equals(password2, "")) {
-        throw new LoginSampleException("Fields 'E-mail', 'Password1' ans 'Password2' may not be empty...");
-    } else if (!(password1.equals(password2))) {
+    if (!(password1.equals(password2))) {
         // If passwords don't match, an exception is thrown
         throw new LoginSampleException("The two passwords did not match");
     } else {

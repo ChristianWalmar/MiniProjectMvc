@@ -37,8 +37,7 @@ public class WishlistController {
 
     // Make "wishlist1" object and assign new values
 
-    if (wishlistName.equals("")) {
-      /*throw new LoginSampleException("The wishlist must have a name");*/
+   if (wishlistName.equals("")) {
       return "redirect:/userpage";
 
     } else {
