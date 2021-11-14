@@ -11,6 +11,8 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.context.request.WebRequest;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
 
@@ -58,7 +60,10 @@ public class ItemController {
 
 
     @GetMapping("/showlist")
-    public String showWishlishlist(WebRequest request, Model model) {
+    public String showWishlishlist(HttpServletRequest request2, WebRequest request, Model model) {
+        HttpSession session = request2.getSession();
+        String urlGuest = (String) session.getAttribute("urlGuest");
+        model.addAttribute("urlGuest", urlGuest);
         Item item1 = (Item) request.getAttribute("item1", WebRequest.SCOPE_SESSION);
         model.addAttribute("item1", item1);  // ?????
         ArrayList itemsOneList = (ArrayList) request.getAttribute("itemsOneList", WebRequest.SCOPE_SESSION);
@@ -67,7 +72,10 @@ public class ItemController {
     }
 
     @GetMapping("/deleteItem/{itemID}") // GET???
-    public String deleteItem(WebRequest request, Model model, @PathVariable(value = "itemID") int itemID) {
+    public String deleteItem(HttpServletRequest request2, WebRequest request, Model model, @PathVariable(value = "itemID") int itemID) {
+        HttpSession session = request2.getSession();
+        String urlGuest = (String) session.getAttribute("urlGuest");
+        model.addAttribute("urlGuest", urlGuest);
 
         itemService.deleteItem(itemID);
         String wishlistName = (String) request.getAttribute("wishlistName", WebRequest.SCOPE_SESSION);

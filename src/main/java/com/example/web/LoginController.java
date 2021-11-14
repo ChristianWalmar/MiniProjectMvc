@@ -44,110 +44,104 @@ public class LoginController {
     @PostMapping("/login")
     public String loginUser(HttpServletRequest request, Model model) throws LoginSampleException {
 
-        HttpSession session = request.getSession();
-        //Retrieve values from HTML form via WebRequest
-        String email = request.getParameter("email");
-        String password = request.getParameter("password");
-        // delegate work + data to login service
-        User user = new User(email, password);
-        boolean isExists = loginService.checkIfUserExists(user);
-
+    HttpSession session = request.getSession();
+    //Retrieve values from HTML form via WebRequest
+    String email = request.getParameter("email");
+    String password = request.getParameter("password");
+    // delegate work + data to login service
+    User user = new User(email, password);
+    boolean isExists = loginService.checkIfUserExists(user);
         if (Objects.equals(email, "") || Objects.equals(password, "")) {
             throw new LoginSampleException("You have to fill in all the fields...");
-
-            /*return "redirect:/";*/
         } else {
-            if (isExists) {
+                if (isExists) {
                 // Set email in session
                 session.setAttribute("email", email);
-
                 // Go to next page after login
                 return "redirect:/userpage";
-
-            } else {
+                } else {
                 throw new LoginSampleException("User is not exists, please try again");
-                // or turn back to "index"
-                /*return "redirect:/";*/
-                /*throw new LoginSampleException("User could not be found in our user base ");*/
-            }
+                }
         }
     }
 
-    // users main page after login
-    @GetMapping("/userpage")
+
+    @GetMapping("/userpage") // users main page after login
     public String userPage(Model model, HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        String emailTemp = (String) session.getAttribute("email");
+    HttpSession session = request.getSession();
+    String email = (String) session.getAttribute("email");
 
-        User user1 = loginService.findUserByEmail(emailTemp);
+    User user1 = loginService.findUserByEmail(email);
 
-        session.setAttribute("user1", user1); //?????
-        model.addAttribute("user1", user1);
+    session.setAttribute("user1", user1); //?????
+    model.addAttribute("user1", user1);
 
-        // Call arraylist and sort the wishlists by users email
-        ArrayList<Wishlist> wishlists = wishlistService.findAll(emailTemp); // search of wishlist objects by email
+    // Call arraylist and sort the wishlists by users email
+    ArrayList<Wishlist> wishlists = wishlistService.findAll(email); // search of wishlist objects by email
 
-        //  Assign model attribute to arraylist med  items
-        model.addAttribute("wishlists", wishlists);
+    //  Assign model attribute to arraylist med  items
+    model.addAttribute("wishlists", wishlists);
 
-
-        // Assign model attribute for "wishlist1" object
-        Wishlist wishlist1 = new Wishlist();
-        model.addAttribute("wishlist1", wishlist1);
-
-        return "userpage";
+    // Assign model attribute for "wishlist1" object
+    Wishlist wishlist1 = new Wishlist();
+    model.addAttribute("wishlist1", wishlist1);
+    return "userpage";
     }
 
 
     // method for "Log out" button
     @GetMapping("/logout")
     public String logoutUser(HttpSession session) {
-        session.invalidate();
-        return "redirect:/";
+    session.invalidate();
+    return "redirect:/";
     }
 
 
     @PostMapping("/register")
     public String createUser(WebRequest request, Model model) throws LoginSampleException {
-        //Retrieve values from HTML form via WebRequest
-        String email = request.getParameter("email");
-        String password1 = request.getParameter("password1");
-        String password2 = request.getParameter("password2");
-        String firstName = request.getParameter("firstname");
-        String lastName = request.getParameter("lastname");
-        String address = request.getParameter("address");
-        int age = Integer.parseInt(request.getParameter("age"));
-        String phoneNumber = request.getParameter("phonenumber");
 
+    //Retrieve values from HTML form via WebRequest
+    String email = request.getParameter("email");
+    String password1 = request.getParameter("password1");
+    String password2 = request.getParameter("password2");
+    String firstName = request.getParameter("firstname");
+    String lastName = request.getParameter("lastname");
+    String address = request.getParameter("address");
+    String age = request.getParameter("age");
+    String phoneNumber = request.getParameter("phonenumber");
+
+    if (Objects.equals(email, "") || Objects.equals(password1, "") | Objects.equals(password2, "")) {
+        throw new LoginSampleException("Fields 'E-mail', 'Password1' ans 'Password2' may not be empty...");
+    } else if (!(password1.equals(password2))) {
+        // If passwords don't match, an exception is thrown
+        throw new LoginSampleException("The two passwords did not match");
+    } else {
         // If passwords match, work + data is delegated to login service
-        if (password1.equals(password2)) {
-            User user = new User(email, password1, firstName, lastName, address, age, phoneNumber);
-            if (new LoginService().checkIfUserExistsRegister(user)) {
-                throw new LoginSampleException("There was already a user with this email.");
-            } else {
-                loginService.createUser(user);
-                request.setAttribute("user", user, WebRequest.SCOPE_SESSION);
-                model.addAttribute("user", user);
-            }
-        } else { // If passwords don't match, an exception is thrown
-            throw new LoginSampleException("The two passwords did not match");
-        }
-        return "/index";
+        User user = new User(email, password1, firstName, lastName, address, age, phoneNumber);
+             if (new LoginService().checkIfUserExistsRegister(user)) {
+                 throw new LoginSampleException("There was already a user with this email..\n Please, choose a different one");
+             } else {
+             loginService.createUser(user);
+             request.setAttribute("user", user, WebRequest.SCOPE_SESSION);
+             model.addAttribute("user", user);
+             }
+    }
+    return "index";
     }
 
     @GetMapping("/userinfo")
     public String userinfo(Model model, HttpServletRequest request) {
-        HttpSession session = request.getSession();
-        User user1 = (User) session.getAttribute("user1");
-        model.addAttribute("user1", user1);
-        return "userinfo";
+    HttpSession session = request.getSession();
+    User user1 = (User) session.getAttribute("user1");
+    model.addAttribute("user1", user1);
+    return "userinfo";
     }
 
 
     @ExceptionHandler(LoginSampleException.class)
     public String handleError(Model model, Exception exception) {
-        model.addAttribute("message", exception.getMessage());
-        return "exceptionPage";
+    model.addAttribute("message", exception.getMessage());
+    return "exceptionPage";
 
     }
 }

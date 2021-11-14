@@ -4,6 +4,7 @@ import com.example.domain.LoginSampleException;
 import com.example.domain.models.Item;
 import com.example.domain.models.Wishlist;
 import com.example.domain.services.WishlistService;
+import org.apache.catalina.session.StandardSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.context.request.WebRequest;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.ArrayList;
 
 
@@ -63,13 +65,16 @@ public class WishlistController {
   public String showWishlist(HttpServletRequest request2, WebRequest request, Model model, @PathVariable(value = "wishlistName") String wishlistName) {
 
     String url = request2.getRequestURL().toString();
-    System.out.println(url);
+
     String urlGuest = wishlistService.makeNewLink(url);
     request.setAttribute("urlGuest", urlGuest, WebRequest.SCOPE_SESSION);
-    System.out.println(urlGuest);
+
 
     //  Assign model attribute to arraylist med  items
     model.addAttribute("urlGuest", urlGuest);
+
+    HttpSession session = request2.getSession();
+    session.setAttribute("urlGuest", urlGuest);
 
 
     // Call arraylist and sort the items by wishlistName

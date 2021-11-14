@@ -3,13 +3,14 @@ body {
     font-family: "Courier New";
 }
 
-h1 {
+h1,h2 {
+    margin-top: 25px;
+    margin-bottom: 25px;
     text-align: center;
 }
 
 
 p {
-    margin-top: 30px;
     text-align: center;
 }
 
@@ -25,7 +26,7 @@ li {
 form {
     border: 3px solid black;
     border-radius: 6px;
-    padding: 5px 0 5px 5px;
+    padding: 5px;
     margin-bottom: 30px;
     width: 300px;
 }
@@ -54,6 +55,22 @@ input {
     margin-right: 10px;
     margin-bottom: 10px;
     margin-top: 10px;
+    border-radius: 8px;
+}
+
+.button-back-to-login {
+    width: 80px;
+    color: #fff;
+    text-decoration: none;
+    user-select: none;
+    background: rgb(56, 129, 212);
+    padding: .7em 1.5em;
+    outline: none;
+    margin-right: 10px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    border-radius: 8px;
+    width: 120px;
 }
 
 
@@ -63,17 +80,6 @@ input {
 
 .button1:active {
     background: rgb(3, 18, 65);
-}
-
-
-.button-wrapper-left {
-    display: flex;
-    justify-content: left;
-}
-
-.button-wrapper-right {
-    display: flex;
-    justify-content: left;
 }
 
 
@@ -133,9 +139,29 @@ tr:nth-child(even) {
 .flex-item-left {
     padding: 10px;
     flex: 50%;
+
 }
 
 .flex-item-right {
     padding: 10px;
     flex: 50%;
 }
+
+.button-wrapper-left {  // remove later
+    display: flex;
+    justify-content: left;
+}
+
+.button-wrapper-right { // remove later
+    display: flex;
+    justify-content: right;
+}
+
+.element-middle {
+    display: flex;
+    justify-content: center;
+}
+
+.field {clear:both; text-align:right; line-height:25px;}
+label {float:left; padding-right:10px;}
+.main {float:left;margin:20px}

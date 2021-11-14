@@ -8,11 +8,12 @@ public class User {
     private String firstName;
     private String lastName;
     private String address;
-    private int age;
+    private String age;
     private String phoneNumber;
 
 
-    public User(String email, String password, String firstName, String lastName, String address, int age, String phoneNumber) {
+    public User(String email, String password, String firstName, String lastName, String address, String age,
+                String phoneNumber) {
         this.email = email;
         this.password = password;
         this.firstName = firstName;
@@ -80,11 +81,11 @@ public class User {
         this.address = address;
     }
 
-    public int getAge() {
+    public String getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(String age) {
         this.age = age;
     }
 
