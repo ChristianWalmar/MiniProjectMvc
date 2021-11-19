@@ -26,6 +26,7 @@ public class LoginController {
     private final ItemService itemService = new ItemService();
     private final WishlistService wishlistService = new WishlistService();
 
+
     // main page "index"
     @GetMapping("/")
     public String index() { return "index";
@@ -36,12 +37,12 @@ public class LoginController {
     @GetMapping("/signup")
     public String signup() {return "signup";}
 
-
+    // gathering data from login form
     @PostMapping("/login")
     public String loginUser(HttpServletRequest request, Model model) throws LoginSampleException {
-
+    //Retrieve request from session
     HttpSession session = request.getSession();
-    //Retrieve values from HTML form via WebRequest
+    //Retrieve values from HTML form via HTTPServletRequest
     String email = request.getParameter("email");
     String password = request.getParameter("password");
     // delegate work + data to login service
@@ -50,22 +51,23 @@ public class LoginController {
         if (isExists) {
              // Set email in session
              session.setAttribute("email", email);
-              // Go to next page after login
-              return "redirect:/userpage";
+             // Go to next page after login
+             return "redirect:/userpage";
         } else {
-            throw new LoginSampleException("User is not exists, please try again");
+             throw new LoginSampleException("User is not exists, please try again");
         }
     }
 
-
-    @GetMapping("/userpage") // users main page after login
+    // users main page after login
+    @GetMapping("/userpage")
     public String userPage(Model model, HttpServletRequest request) {
     HttpSession session = request.getSession();
     String email = (String) session.getAttribute("email");
 
     User user1 = loginService.findUserByEmail(email);
 
-    session.setAttribute("user1", user1); //?????
+    // add attribute to session
+    session.setAttribute("user1", user1);
     model.addAttribute("user1", user1);
 
     // Call arraylist and sort the wishlists by users email
@@ -74,8 +76,9 @@ public class LoginController {
     //  Assign model attribute to arraylist med  items
     model.addAttribute("wishlists", wishlists);
 
-    // Assign model attribute for "wishlist1" object
     Wishlist wishlist1 = new Wishlist();
+
+    // Assign model attribute for "wishlist1" object
     model.addAttribute("wishlist1", wishlist1);
     return "userpage";
     }

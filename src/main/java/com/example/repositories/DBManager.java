@@ -20,9 +20,9 @@ public class DBManager {
         try (InputStream input = new FileInputStream("src/main/resources/application.properties")) {
             Properties properties = new Properties();
             properties.load(input);
-            url = properties.getProperty("url");
-            user = properties.getProperty("user");
-            password = properties.getProperty("password");
+            url = System.getenv("url"); // url = properties.getProperty("url");
+            user = System.getenv("user"); // user = properties.getProperty("user");
+            password = System.getenv("password"); // password = properties.getProperty("password");
         } catch (IOException ex) {
             ex.printStackTrace();
         }

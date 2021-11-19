@@ -8,10 +8,7 @@ public class ItemService {
 
     private ItemRepository itemRepository = new ItemRepository();
 
-    public void createItem(Item item) throws LoginSampleException {
-        new ItemRepository().dbWrite(item);
-    }
-
+    public void createItem(Item item) throws LoginSampleException {new ItemRepository().dbWrite(item);}
 
     public void deleteItem(int itemID) {
         itemRepository.deleteItemFromDB(itemID);
